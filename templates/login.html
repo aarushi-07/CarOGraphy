@@ -1,10 +1,30 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Welocme to Login Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CaroGraphy - Login</title>
+    <link rel="stylesheet" href="{% static 'static/login.css' %}">
 </head>
 <body>
-<h1>Login Page</h1>
+    <div class="container">
+        <div class="image-container">
+                <img src="{% static 'static/20945733.jpg' %}" alt="CaroGraphy logo" class="image">
+            </div>
+        <div class="form-container">
+            <h1 class="title">CaroGraphy</h1>
+            <p class="signup">Don't have an account? Sign up</p>
+            <form class="form" method="post">
+                {% csrf_token %}
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Email" required>
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Password" required>
+                <button type="submit" class="button">Login</button>
+                <p class="forgot-password">Forgot password?</p>
+            </form>
+        </div>
+    </div>
 </body>
 </html>
