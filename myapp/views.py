@@ -1,9 +1,22 @@
-from django.shortcuts import render
-from django.http import HttpResponse
-from django.shortcuts import get_object_or_404
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login
+
+from .models import CarUser
+
+def login_view(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        user = authenticate(request, email=email, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('home')
+        else:
+            # Handle invalid login
+            return render(request, 'login.html', {'error_message': 'Invalid email or password'})
+    else:
+        return render(request, 'login.html')
 
 
-# Create your views here.
-def about(request):
-    a = "<p>Welcome to CarOGraphy!</p>"
-    return HttpResponse(a)
+def home_view(request):
+    return render(request,'home.html')
