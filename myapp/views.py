@@ -20,3 +20,6 @@ def login_view(request):
 
 def home_view(request):
     return render(request,'home.html')
+
+def landing(request):
+    return render(request, 'landing.html')
