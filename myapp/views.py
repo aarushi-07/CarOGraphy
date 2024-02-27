@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate, login
 
 from .models import CarUser
 
+
 def login_view(request):
     if request.method == 'POST':
         email = request.POST.get('email')
@@ -19,4 +20,4 @@ def login_view(request):
 
 
 def home_view(request):
-    return render(request,'home.html')
+    return render(request, 'home.html')

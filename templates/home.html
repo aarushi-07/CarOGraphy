@@ -1,10 +1,69 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Welcome to Home Page</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'static/home.css' %}">
+  <title>CaroGraphy - Auto Body Repair Services</title>
 </head>
 <body>
-<h1>Welcome to home page</h1>
+  <header class="header">
+    <div class="header-content">
+      <h1 class="logo">CaroGraphy</h1>
+      <p class="slogan">Expert Care: Mile After Mile</p>
+    </div>
+  </header>
+  <nav class="navbar">
+    <ul class="nav-menu">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+  <main>
+    <section id="home" class="section">
+      <div class="section-content">
+        <h2>Welcome to CaroGraphy</h2>
+        <p>Quality maintained at every single visit! Their attention to detail is impeccable, their cleaning products are top-notch, and their staff are the friendliest I have ever met. Great service, great app.</p>
+        <button class="btn">Get Subscription</button>
+      </div>
+    </section>
+    <section id="about" class="section">
+      <div class="section-content">
+        <h2>About Us</h2>
+        <p>We not only pride ourselves on taking care of your car but also taking care of you. CaroGraphy offers the highest quality repairs and customer satisfaction in the auto body repair industry.</p>
+      </div>
+    </section>
+    <section id="services" class="section">
+      <div class="section-content">
+        <h2>Our Services</h2>
+        <p>CaroGraphy offers comprehensive auto body repair services, from minor dents and dings to repairing your accident damage. Whether you've had a fender bender, tangled with Mother Nature, or want to freshen up your car's look, you can relax, we'll take it from here!</p>
+        <h3>Wheel Alignment</h3>
+        <p>Unleash the true potential of your vehicle with our wheel alignment services.</p>
+      </div>
+    </section>
+    <section id="contact" class="section">
+      <div class="section-content">
+        <h2>Contact Us</h2>
+        <address>
+          MR. LUBE<br>
+          640 Main Street West<br>
+          Windsor, ON K6A 2J3<br>
+          (123) 635-4587
+        </address>
+        <button class="btn">Login</button>
+      </div>
+    </section>
+  </main>
+  <footer class="footer">
+    <p>Follow us on</p>
+    <ul class="social-links">
+      <li><a href="#">GALEND</a></li>
+      <li><a href="#">CaroGraphy</a></li>
+      <li><a href="#">Unthetethine for your wahida ABS Company</a></li>
+    </ul>
+  </footer>
 </body>
 </html>
