@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+{#    <link rel="stylesheet" href="{% static 'static/login.css' %}">#}
+    <link rel="stylesheet" href="{% static 'static/profile.css' %}">
+</head>
+<body>
+<div class="container">
+    <h1 class="title">Edit Profile</h1>
+ <form action="profile.html" style="border:1px solid #ccc">
+    <div class="form-container">
+
+    <div class="avatar-container">
+        <img  src="{% static 'static/default-avatar.jpeg' %}" alt="Avatar" class="avatar">
+        <div class="edit-icon"></div><br>
+    </div>
+<table>
+    <tr>
+        <td><label for="first_name"><b>First Name</b></label> </td>
+        <td> <input type="text" name="first_name"></td>
+    </tr>
+
+    <tr>
+        <td><label for="last_name"><b>Last Name</b></label></td>
+        <td><input type="text" name="last_name"></td>
+    </tr>
+
+    <tr>
+        <td><label for="email">Email</label></td>
+        <td><input type="text" id="email" name="email" disabled></td>
+    </tr>
+
+</table>
+    <button type="submit" class="button">Update Profile</button>
+  </div>
+</form>
+</div>
+</body>
+</html>
