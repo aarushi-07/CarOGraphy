@@ -44,3 +44,6 @@ def register_view(request):
 
 def home_view(request):
     return render(request, 'home.html')
+
+def edit_profile(request):
+    return render(request, 'profile.html')
