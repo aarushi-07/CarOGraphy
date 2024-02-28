@@ -1,0 +1,246 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carography User Guide</title>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet" href="{% static 'static/UserGuide.css' %}">
+</head>
+<body>
+<div class="menu-bar">
+    <img src="{% static 'static/logo.png' %}" alt="CaroGraphy logo" class="logo">
+    <span class="app-name">CarOGraphy</span>
+    <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Contact Us</a></li>
+    </ul>
+</div>
+<div class="container">
+    <h1 class="animate__animated animate__fadeInUp">User Guide</h1>
+    <div class="section animate__animated animate__fadeInUp">
+        <h2 class="section-title">Welcome to Carography, your go-to car service application! This user guide will walk you through the features and functionalities of our app.</h2>
+    </div>
+    <div>
+                <video width="800px" height="-300px" autoplay>
+                    <source src="{% static 'static/UserGuide.mp4' %}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+    </div>
+    <div class="section animate__animated animate__fadeInUp">
+    <h2 class="section-title">Features</h2>
+    <div class="swiper-container features-slider">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <ul>
+                    <li>Schedule service appointments for your vehicle.</li>
+                </ul>
+            </div>
+            <div class="swiper-slide">
+                <ul>
+                    <li>View and manage your vehicle's service history.</li>
+                </ul>
+            </div>
+            <div class="swiper-slide">
+                <ul>
+                    <li>Receive reminders for upcoming maintenance tasks.</li>
+                </ul>
+            </div>
+            <div class="swiper-slide">
+                <ul>
+                    <li>Find nearby service centers and garages.</li>
+                </ul>
+            </div>
+            <div class="swiper-slide">
+                <ul>
+                    <li>Get real-time updates on the status of your vehicle's service.</li>
+                </ul>
+            </div>
+        </div>
+        <!-- Add pagination bullets -->
+        <div class="swiper-pagination"></div>
+    </div>
+</div>
+    <div class="section-wrapper animate__animated animate__fadeInUp">
+        <div class="section section-left">
+            <h2 class="section-title">Getting Started</h2>
+            <p>To get started with Carography, follow these simple steps:</p>
+            <ol>
+                <li>Visit our website at www.carography.com.</li>
+                <li>Click on the "Sign Up" button located in the top right corner of the page.</li>
+                <li>Fill out the registration form with your details, including your name, email address, and desired password.</li>
+                <li>Click on the "Create Account" button to complete the registration process.</li>
+                <li>Once registered, log in to your account using your email address and password.</li>
+                <li>You will be redirected to your dashboard, where you can start exploring the features of Carography.</li>
+            </ol>
+            </div>
+        <div class="section section-right">
+            <img src="{% static 'static/login.jpg' %}">
+        </div>
+                 <p>If you encounter any issues during the registration or login process, please don't hesitate to <a href="#">contact our support team</a> for assistance.</p>
+
+    </div>
+    <div class="section-wrapper animate__animated animate__fadeInUp">
+        <div class="section section-left">
+            <h2 class="section-title">Booking a Service</h2>
+            <p>To book a service with Carography, follow these steps:</p>
+            <ol>
+                <li>Log in to your Carography account.</li>
+                <li>From the dashboard, navigate to the "Book Service" section.</li>
+                <li>Select the type of service you require (e.g., oil change, tire rotation).</li>
+                <li>Choose your preferred date and time for the service appointment.</li>
+                <li>Provide any additional details or specific requirements for the service.</li>
+                <li>Confirm your booking details and proceed to payment (if applicable).</li>
+                <li>Once booked, you will receive a confirmation email with the appointment details.</li>
+            </ol>
+            </div>
+        <div class="section section-right">
+            <img src="{% static 'static/Booking.jpg' %}">
+        </div>
+                 <p>If you encounter any issues during the registration or login process, please don't hesitate to <a href="#">contact our support team</a> for assistance.</p>
+
+    </div>
+
+    <div class="section-wrapper animate__animated animate__fadeInUp">
+        <div class="section section-left">
+            <h2 class="section-title">Booking a Service</h2>
+            <p>To book a service with Carography, follow these steps:</p>
+            <img src="{% static 'static/History.png' %}">
+            </div>
+        <div class="section section-right">
+            <ol>
+        <li>Log in to your Carography account.</li>
+        <li>Go to the "Service History" section in your dashboard.</li>
+        <li>You will see a list of all previous service appointments and maintenance tasks.</li>
+        <li>To view details of a specific service entry, click on it to expand.</li>
+    </ol>
+        </div>
+        <p>If you encounter any issues during the registration or login process, please don't hesitate to <a href="#">contact our support team</a> for assistance.</p>
+
+    </div>
+    <div class="section animate__animated animate__fadeInUp">
+    <h2 class="section-title">FAQs and Troubleshooting</h2>
+    <p>Below are some frequently asked questions and troubleshooting tips:</p>
+    <h2>FAQs (Frequently Asked Questions)</h2>
+    <ol>
+        <li><strong>Q: How do I reset my password?</strong><br>
+            A: You can reset your password by clicking on the "Forgot Password" link on the login page and following the instructions sent to your email.</li><br>
+        <li><strong>Q: Can I schedule multiple service appointments for different vehicles?</strong><br>
+            A: Yes, you can schedule service appointments for multiple vehicles from your account dashboard.</li><br>
+        <li><strong>Q: How do I update my profile information?</strong><br>
+            A: You can update your profile information, including name, email, and contact details, from the "Account Settings" section in your dashboard.</li>
+    </ol>
+</div>
+    <div class="section animate__animated animate__fadeInUp">
+    <h2 class="section-title">Troubleshooting Tips</h2>
+    <div class="swiper-container features-slider">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <ul>
+                    <li><strong>Issue: Unable to log in to my account</strong><br>
+                    - Ensure you are entering the correct email address and password.<br>
+                    - Check if your internet connection is stable.<br>
+                    - Clear your browser cache and cookies, then try logging in again.</li>
+                </ul>
+            </div>
+            <div class="swiper-slide">
+                <ul>
+                    <li><strong>Issue: Not receiving email notifications</strong><br>
+                    - Check your spam or junk email folder.<br>
+                    - Add our email address to your contacts or whitelist to ensure delivery.<br>
+                    - Contact our support team if the issue persists.</li>
+                </ul>
+            </div>
+            <div class="swiper-slide">
+                <ul>
+                    <li><strong>Issue: Error messages or unexpected behavior</strong><br>
+                    - Refresh the page and try again.<br>
+                    - Clear your browser cache and cookies.<br>
+                    - Try accessing the application from a different browser or device.<br>
+                    - If the issue persists, contact our support team for assistance.</li>
+                </ul>
+            </div>
+        </div>
+        <!-- Add pagination bullets -->
+        <div class="swiper-pagination"></div>
+    </div>
+</div>
+<div class="section animate__animated animate__fadeInUp">
+    <h2 class="section-title">Feedback and Support</h2>
+    <p>We value your feedback and are here to assist you with any questions or concerns you may have. Here's how you can reach out to us:</p>
+    <h3>Feedback</h3>
+    <p>We welcome your feedback on how we can improve Carography to better meet your needs. Please feel free to send us your suggestions, feature requests, or general comments.</p>
+    <p>You can provide feedback by emailing us at <a href="mailto:feedback@carography.com">feedback@carography.com</a> or by filling out the feedback form on our website.</p>
+    <h3>Support</h3>
+    <p>If you encounter any issues while using Carography or need assistance with any aspect of the application, our support team is here to help.</p>
+    <p>You can contact our support team via email at <a href="mailto:support@carography.com">support@carography.com</a>. Please provide detailed information about the issue you're experiencing, including any error messages or steps to reproduce the problem.</p>
+    <p>In addition to email support, you can also visit our <a href="#">Help Center</a> for answers to frequently asked questions and troubleshooting tips.</p>
+</div>
+
+
+</div>
+<div class="footer">
+    <div class="company-logo">
+         <img src="{% static 'static/logo.png' %}" alt="CaroGraphy logo" width="100">
+
+        <span class="company-name">Carography</span>
+    </div>
+    <div class="footer-sections">
+        <div class="footer-section">
+            <h3>Company</h3>
+            <ul>
+                <li>Home</li>
+                <li>About</li>
+                <li>Services</li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>Help</h3>
+            <ul>
+                <li>FAQs</li>
+                <li>Contact Support</li>
+                <li>Documentation</li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>Contact Us</h3>
+            <p>Email: support@carography.com</p>
+            <p>Phone: 123-456-7890</p>
+        </div>
+        <div class="footer-section">
+            <h3>Follow Us</h3>
+            <ul>
+                <li><a href="#">Facebook</a></li>
+                <li><a href="#">Twitter</a></li>
+                <li><a href="#">Instagram</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.js"></script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+    var swiper = new Swiper('.swiper-container', {
+        slidesPerView: 1,
+        spaceBetween: 200,
+        loop: true,
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+        autoplay: {
+            delay: 5000, // 5 seconds delay between slides
+            disableOnInteraction: false,
+        },
+    });
+</script>
+
+</body>
+</html>
+
