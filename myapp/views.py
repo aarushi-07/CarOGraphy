@@ -48,3 +48,6 @@ def home_view(request):
 
 def edit_profile(request):
     return render(request, 'profile.html')
+
+def forgot_password(request):
+    return render(request, 'your_template_name.html')
