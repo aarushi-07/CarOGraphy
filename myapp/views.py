@@ -50,4 +50,4 @@ def edit_profile(request):
     return render(request, 'profile.html')
 
 def forgot_password(request):
-    return render(request, 'your_template_name.html')
+    return render(request, 'forgot_password.html')
