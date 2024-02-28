@@ -51,3 +51,15 @@ def edit_profile(request):
 
 def forgot_password(request):
     return render(request, 'forgot_password.html')
+
+def user_guide(request):
+    content = {
+        'title': 'Carography User Guide',
+        'sections': [
+            {
+                'title': 'Introduction',
+                'content': 'Welcome to the Carography User Guide!'
+            },
+        ]
+    }
+    return render(request, 'UserGuide.html', content)
