@@ -1,0 +1,101 @@
+/* home.css */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  background-color: #333;
+  color: #fff;
+  padding: 20px 0;
+  text-align: center;
+}
+
+.header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.logo {
+  font-size: 2em;
+}
+
+.slogan {
+  font-size: 1.2em;
+}
+
+.navbar {
+  background-color: #444;
+}
+
+.nav-menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.nav-menu li {
+  display: inline;
+}
+
+.nav-menu li a {
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 20px;
+}
+
+.nav-menu li a:hover {
+  background-color: #555;
+}
+
+.section {
+  padding: 50px 0;
+  text-align: center;
+}
+
+.section-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.btn {
+  background-color: #008CBA;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-top: 20px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.btn:hover {
+  background-color: #005f75;
+}
+
+.footer {
+  background-color: #333;
+  color: #fff;
+  padding: 20px 0;
+  text-align: center;
+}
+
+.social-links {
+  list-style: none;
+  padding: 0;
+}
+
+.social-links li {
+  display: inline;
+}
+
+.social-links li a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 10px;
+}

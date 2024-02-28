@@ -13,8 +13,8 @@
                 <img src="{% static 'static/20945733.jpg' %}" alt="CaroGraphy logo" class="image">
             </div>
         <div class="form-container">
-            <h1 class="title">CaroGraphy</h1>
-            <p class="signup">Don't have an account? Sign up</p>
+            <h1 class="title">CarOGraphy</h1>
+            <p class="signup">Don't have an account?<a href="/register/"> Sign up</a></p>
             <form class="form" method="post" action="{% url 'home' %}">
                 {% csrf_token %}
                 <label for="email">Email</label>

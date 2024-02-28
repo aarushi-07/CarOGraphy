@@ -38,7 +38,7 @@ def register_view(request):
 
         user = authenticate(request, username=email, password=password)
         login(request, user)
-        return redirect('login')  
+        return redirect('login')
     return render(request, 'register.html')
 
 
