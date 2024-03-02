@@ -5,43 +5,14 @@
     <meta charset="UTF-8">
     <title>Landing</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'myapp/landing.css' %}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <style>
-        .navbar {
-            background-color: #3d71ab;
-            border-radius: 0px;
-            color: white;
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-        }
-
-        ul li a {
-            color: white;
-        }
-
-        button {
-            float: right;
-            margin-right: 10px;
-        }
-
-        .row {
-            margin-right: 0px;
-            margin-left: 0px;
-        }
-
-        .sc {
-            background-color: #f7f7f7;
-        }
-
-        .rv {
-            background-color: #fcfcfc;
-            border-radius: 17px;
-            width: 47%;
-            margin: 20px;
-            padding: 25px;
-        }
-    </style>
 </head>
 
 <body>
@@ -65,7 +36,7 @@
 
 
 
-    <div class="row" style="margin-top: 80px;">
+    <div class="row" style="margin-top: 80px;margin-bottom: 20px">
         <div class="col-sm-4">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSidYPqHQv4TMtSTsVVwmhUt0eKRYiPuTKeJQ&usqp=CAU"
                 class="img-thumbnail" alt="Cinque Terre">
@@ -83,19 +54,19 @@
             </div>
         </div>
     </div>
-    <div class="row sc">
-        <div>
+    <div class="row services">
+        <div class="titles">
             Our Services
         </div>
         <div>
-            <div class="row">
+            <div class="row content">
                 <div class="col-sm-4">
                     <div>
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSidYPqHQv4TMtSTsVVwmhUt0eKRYiPuTKeJQ&usqp=CAU"
                             class="img" alt="Cinque Terre">
 
                     </div>
-                    <div>Car Washing</div>
+                    <h3>Car Washing</h3>
                     <div>Unleash the ultimate shine for your vehicle</div>
                 </div>
                 <div class="col-sm-4">
@@ -104,7 +75,7 @@
                             class="img" alt="Cinque Terre">
 
                     </div>
-                    <div>Car Washing</div>
+                    <h3>Car Washing</h3>
                     <div>Unleash the ultimate shine for your vehicle</div>
                 </div>
                 <div class="col-sm-4">
@@ -113,23 +84,23 @@
                             class="img" alt="Cinque Terre">
 
                     </div>
-                    <div>Car Washing</div>
+                    <h3>Car Washing</h3>
                     <div>Unleash the ultimate shine for your vehicle</div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="row tc">
-        <div>
+    <div class="row custreview">
+        <div class="titlecr">
             Customer Review
         </div>
         <div class="row">
-            <div class="col-sm-6 rv">“Quality maintained at every single visit! Their attention to details is
+            <div class="col-sm-6 reviewcontent">“Quality maintained at every single visit! Their attention to details is
                 impeccable, their cleaning products are top notch and their staff are the friendliest i have ever met
                 Great service, great app.”
                 <p>-xyz</p>
             </div>
-            <div class="col-sm-6 rv">“Quality maintained at every single visit! Their attention to details is
+            <div class="col-sm-6 reviewcontent">“Quality maintained at every single visit! Their attention to details is
                 impeccable, their cleaning products are top notch and their staff are the friendliest i have ever met
                 Great service, great app.”
                 <p>-xyz</p>
@@ -137,31 +108,79 @@
         </div>
     </div>
 
-    <div class="row fc">
-        <div>
+    <div class="row garages">
+        <div class="titles">
             Garages
         </div>
-        <div class="row">
+        <div class="row garagescontent">
             <div class="col-sm-4"><img
                     src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSidYPqHQv4TMtSTsVVwmhUt0eKRYiPuTKeJQ&usqp=CAU"
-                    class="img" alt="Cinque Terre">
+                    class="img-thumbnail" alt="Cinque Terre">
 
             </div>
-            <div class="col-sm-6">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <h3>Mr. Lube</h3>
+            <div class="col-sm-8">
+                <div class="row d-flex align-items-center justify-content-center">
+                    <div class="col-sm-5">
+                        <h3 style="font-weight: bold;padding-bottom: 10px">Mr. Lube</h3>
                         <p>640 Main Street West</p>
                         <p>Windsor, ON K6A 2J3</p>
                         <p>(123)635-4587</p>
                     </div>
-                    <div class="col-sm-1">location</div>
-                    <div class="col-sm-5">see more detailss</div>
+                    <div class="col-sm-2 align-self-center">location</div>
+                    <div class="col-sm-5 text-center">
+                        <p> closed</p>
+                        <a href="">see more details ❯</a>
+                    </div>
                 </div>
             </div>
         </div>
-        <button>see all gareges</button>
+        <div class="cntr">
+            <button class="btn btn-danger btng">See All Garages ❯</button>
+        </div>
     </div>
+
+    <footer>
+
+        <div>
+
+        </div>
+        <div class="row footermenu">
+            <div class="col-sm-3">
+                <h3>Company</h3>
+
+                <p><a href="">Home</a></p>
+                <p><a href="">About</a></p>
+                <p><a href="">Services</a></p>
+                <p><a href="">Contact</a></p>
+            </div>
+            <div class="col-sm-3">
+                <h3>Help</h3>
+                <p><a href="">Customer Support</a></p>
+                <p><a href="">Terms and Conditions</a></p>
+                <p><a href="">Privacy Policy</a></p>
+            </div>
+            <div class="col-sm-3">
+                <h3>Contact Us</h3>
+                <p>100, Marentett Avenue, WIndsor</p>
+                <p>+1234567890</p>
+                <p>Monday to Friday</p>
+                <p>9:00 AM to 10 pm</p>
+            </div>
+            <div class="col-sm-3">
+                <h3>Follow Us</h3>
+                <p>
+                    <a href="" class="fa fa-facebook" style="color: white;font-size: 30px"></a>
+                </p>
+                <p>
+                    <a href="" class="fa fa-twitter" style="color: white;font-size: 30px"></a>
+
+                </p>
+                <p>
+                    <a href="#" class="fa fa-instagram" style="color: white;font-size: 30px"></a>
+                </p>
+            </div>
+        </div>
+    </footer>
 
 </body>
 
