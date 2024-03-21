@@ -56,28 +56,28 @@ button:hover {
     text-align: center;
 }
 
-.avatar-container{
-  position: relative;
-}
+/*.avatar-container{*/
+/*  position: relative;*/
+/*}*/
 
-.avatar {
-  display: block;
-  margin: auto;
-  width: 50%;
-  height: 50%;
-  border-radius: 50%;
-}
+/*.avatar {*/
+/*  display: block;*/
+/*  margin: auto;*/
+/*  width: 50%;*/
+/*  height: 50%;*/
+/*  border-radius: 50%;*/
+/*}*/
 
-.edit-icon {
-  position: absolute;
-  top: 80%;
-  left: 67%;
-  transform: translate(-50%, -50%);
-  background-image: url('pen.png');
-  width: 15%;
-  height: 15%;
-  background-size: contain;
-  background-repeat: no-repeat;
-  cursor: pointer;
-  /*border-radius: 50%;*/
-}
+/*.edit-icon {*/
+/*  position: absolute;*/
+/*  top: 80%;*/
+/*  left: 67%;*/
+/*  transform: translate(-50%, -50%);*/
+/*  background-image: url('pen.png');*/
+/*  width: 15%;*/
+/*  height: 15%;*/
+/*  background-size: contain;*/
+/*  background-repeat: no-repeat;*/
+/*  cursor: pointer;*/
+/*  !*border-radius: 50%;*!*/
+/*}*/
