@@ -1,26 +1,32 @@
+from django.contrib.auth.models import User
 from django.db import models
+import os
 
 STATUS = ((0, "Closed"), (1, "Open"))
 ROLES = ((0, "User"), (1, "Service Provider"))
 
 
 def image_file_path(instance, filename):
-    return 'images/{instance.email}.jpg'
+    return f'images/{instance.username}.jpg'
 
 
-# Create your models here.
-class CarUser(models.Model):
-    # id = models.AutoField(primary_key=True)
-    first_name = models.CharField(max_length=20)
-    last_name = models.CharField(max_length=20)
-    email = models.EmailField(max_length=50, primary_key=True)
-    password = models.CharField(max_length=20)
+class Profile(User):
     role = models.IntegerField(choices=ROLES, default=0)
-    created_on = models.DateTimeField(auto_now_add=True)
     photo = models.ImageField(upload_to=image_file_path, null=True)
 
     def __str__(self):
         return self.first_name + " " + self.last_name
+
+    def save(self, *args, **kwargs):
+        try:
+            old_profile = Profile.objects.get(pk=self.pk)
+            if old_profile.photo and self.photo and old_profile.photo != self.photo:
+                # Delete old profile picture file from storage
+                os.remove(old_profile.photo.path)
+        except Profile.DoesNotExist:
+            pass
+
+        super(Profile, self).save(*args, **kwargs)
 
 
 # class Post(models.Model):
@@ -33,3 +39,4 @@ class CarUser(models.Model):
 #
 #     def __str__(self):
 #         return self.title
+
