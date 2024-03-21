@@ -8,7 +8,7 @@ from django.utils.dateparse import parse_datetime
 from django.utils import timezone
 
 
-from .models import CarUser
+from myapp.forms import ProfileForm
 
 
 def login_view(request):
@@ -73,8 +73,18 @@ def home_view(request):
     return render(request, 'home.html', {'visits': request.session['visits']})
 
 
-def edit_profile(request):
-    return render(request, 'profile.html')
+def update_profile(request):
+    profile = request.user
+
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            form.save()
+            return redirect('home.html')
+    else:
+        form = ProfileForm(instance=profile)
+
+    return render(request, 'profile.html', {'form': form})
 
 def forgot_password(request):
     return render(request, 'forgot_password.html')

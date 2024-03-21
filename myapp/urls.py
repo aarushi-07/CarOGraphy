@@ -1,11 +1,11 @@
 from django.urls import path
 from myapp import views
-from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('login/', views.login_view, name='login'),
     path('home/', views.home_view, name='home'),
     path('register/', views.register_view, name='register'),
+<<<<<<< HEAD
     path('profile/', views.edit_profile, name='profile'),
     # path('forgot-password/', views.forgot_password, name='forgot_password'),
     path('user-guide/', views.user_guide, name='user_guide'),
@@ -19,8 +19,9 @@ urlpatterns = [
     path('user-history/', views.user_history_view, name='user_history'),
 
 
+=======
+    path('profile/', views.update_profile, name='profile'),
+    path('forgot-password/', views.forgot_password, name='forgot_password'),
+    path('user-guide/', views.user_guide, name='user_guide')
+>>>>>>> 6d637923cd5fb747f963c1ec262add692385578b
 ]
-
-
-
-# https://docs.djangoproject.com/en/3.0/topics/auth/default/#all-authentication-views
