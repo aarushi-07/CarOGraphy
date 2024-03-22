@@ -49,3 +49,11 @@ class Cargaragedata(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class ChatManager(models.Manager):
+    def by_user(self, **kwargs):
+        user = kwargs.get('user')
+        lookup = models.Q(user1=user) | models.Q(user2=user)
+        result = self.get_queryset().filter(lookup).distinct()
+        return result
