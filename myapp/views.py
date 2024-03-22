@@ -74,60 +74,27 @@ def user_guide(request):
     }
     return render(request, 'myapp/UserGuide.html', content)
 
-<<<<<<< HEAD
 def landing(request):
     return render(request, 'myapp/landing.html')
-=======
-
-
-# def user_history_view(request):
-#     last_login = request.session.get('last_login')
-#     if last_login:
-#         last_login = parse_datetime(last_login)
-#         last_login_str = last_login.strftime("%Y-%m-%d %H:%M:%S")
-#     else:
-#         last_login_str = "Never"
-
-#     visits = request.COOKIES.get('visits', '0')
-    
-#     return HttpResponse(f"Last Login: {last_login_str}, Number of Visits: {visits}")
-
 
 def contact_us(request):
     return render(request, 'contact_us.html')
 
-
-
 # def user_history_view(request):
-#     # Retrieve the number of visits and visit history from session
+#     # Retrieve the number of visits and visit history from the session
 #     visits = request.session.get('visits', 0)
 #     visit_history = request.session.get('visit_history', [])
-
-#     # Format the timestamps for display
-#     formatted_visit_history = [parse_datetime(ts).strftime("%Y-%m-%d %H:%M:%S") for ts in visit_history]
-
-#     history_str = "<br>".join(formatted_visit_history)
-
-#     return HttpResponse(f"Total Visits: {visits}<br>Visit History:<br>{history_str}")
-
-
-def user_history_view(request):
-    # Retrieve the number of visits and visit history from the session
-    visits = request.session.get('visits', 0)
-    visit_history = request.session.get('visit_history', [])
     
-    # Format the timestamps for display
-    formatted_visit_history = [
-        parse_datetime(ts).strftime("%Y-%m-%d %H:%M:%S") for ts in visit_history
-    ]
+#     # Format the timestamps for display
+#     formatted_visit_history = [
+#         parse_datetime(ts).strftime("%Y-%m-%d %H:%M:%S") for ts in visit_history
+#     ]
 
-    # Pass the formatted visit history to the template
-    context = {
-        'visits': visits,
-        'visit_history': formatted_visit_history
-    }
+#     # Pass the formatted visit history to the template
+#     context = {
+#         'visits': visits,
+#         'visit_history': formatted_visit_history
+#     }
 
-    # Render the template with context
-    return render(request, 'user_history.html', context)
-
->>>>>>> 35650d3 (contact us and user history view intial)
+#     # Render the template with context
+#     return render(request, 'user_history.html', context)
