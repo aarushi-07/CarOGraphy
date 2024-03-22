@@ -103,17 +103,17 @@ def user_guide(request):
 
 
 
-def user_history_view(request):
-    last_login = request.session.get('last_login')
-    if last_login:
-        last_login = parse_datetime(last_login)
-        last_login_str = last_login.strftime("%Y-%m-%d %H:%M:%S")
-    else:
-        last_login_str = "Never"
+# def user_history_view(request):
+#     last_login = request.session.get('last_login')
+#     if last_login:
+#         last_login = parse_datetime(last_login)
+#         last_login_str = last_login.strftime("%Y-%m-%d %H:%M:%S")
+#     else:
+#         last_login_str = "Never"
 
-    visits = request.COOKIES.get('visits', '0')
+#     visits = request.COOKIES.get('visits', '0')
     
-    return HttpResponse(f"Last Login: {last_login_str}, Number of Visits: {visits}")
+#     return HttpResponse(f"Last Login: {last_login_str}, Number of Visits: {visits}")
 
 
 def contact_us(request):
