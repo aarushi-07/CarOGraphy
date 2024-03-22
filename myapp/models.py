@@ -40,3 +40,12 @@ class Profile(User):
 #     def __str__(self):
 #         return self.title
 
+class Cargaragedata(models.Model):
+    name = models.CharField(max_length=100)
+    rating = models.DecimalField(max_digits=3,decimal_places=1)
+    address = models.CharField(max_length=200)
+    contact_number = models.CharField(max_length=20)
+    website = models.URLField()
+
+    def __str__(self):
+        return self.name
