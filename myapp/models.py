@@ -59,5 +59,3 @@ def create_or_update_user_profile(sender, instance, created, **kwargs):
         UserProfile.objects.create(user=instance)
     else:
         instance.profile.save()
-=======
->>>>>>> 6d637923cd5fb747f963c1ec262add692385578b
