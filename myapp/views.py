@@ -76,3 +76,6 @@ def user_guide(request):
 
 def landing(request):
     return render(request, 'myapp/landing.html')
+
+def chat(request):
+    return render(request, 'myapp/chat.html')
