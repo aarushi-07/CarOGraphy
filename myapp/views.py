@@ -73,3 +73,6 @@ def user_guide(request):
         ]
     }
     return render(request, 'UserGuide.html', content)
+
+def landing(request):
+    return render(request, 'myapp/landing.html')
