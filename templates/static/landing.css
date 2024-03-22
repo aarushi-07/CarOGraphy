@@ -1,0 +1,97 @@
+*{
+    font-size: 18px;
+}
+/*.navbar {*/
+/*    background-color: #3d71ab;*/
+/*    border-radius: 0px;*/
+/*    color: white;*/
+
+/*}*/
+
+/* ul li a {*/
+/*    color: white;*/
+/*}*/
+
+/*.navbar-btn {*/
+/*    float: right;*/
+/*    margin-right: 10px;*/
+/*}*/
+
+.row {
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+.services, .garages {
+    background-color: #f7f7f7;
+}
+
+.titles{
+    font-weight: bold;
+    text-align: center;
+    font-size: 30px; color: #3D71AB;
+    margin: 20px 0px 20px 0px
+}
+
+.titlecr{
+    font-weight: bold;
+    text-align: center;
+    font-size: 30px;
+    color: #ED554A;
+    margin: 20px 0px 20px 0px
+}
+.services .content{
+    margin-left: 40px;
+    margin-bottom: 20px
+}
+
+.reviewcontent{
+    box-shadow: 0px 0px 4px 2px lightgray;
+    background-color: #fcfcfc;
+    border-radius: 17px;
+    width: 47%;
+    margin: 20px;
+    padding: 25px;
+}
+
+.content img{
+    border-radius: 10px
+}
+
+.garagescontent{
+     background-color: white;
+    border-radius: 17px;
+    margin: 10px 30px 20px 30px;
+    padding: 25px;
+    box-shadow: 0px 0px 4px 2px lightgray;
+}
+.btng{
+    width: 200px;
+    font-size: medium;
+    font-weight: bolder;
+}
+
+
+.cntr {
+display: flex;
+justify-content: center;
+align-items: center;
+    margin-bottom: 20px;
+}
+
+footer{
+background-color: #3d71ab;
+color: white;
+}
+
+footer h3{
+color: #ED554A;
+}
+
+footer p a{
+color: white;
+}
+
+.footermenu{
+margin: 0px 50px 0px 50px;
+}

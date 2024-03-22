@@ -22,4 +22,4 @@ def home_view(request):
     return render(request,'home.html')
 
 def landing(request):
-    return render(request, 'landing.html')
+    return render(request, 'myapp/landing.html')
