@@ -80,21 +80,5 @@ def landing(request):
 def contact_us(request):
     return render(request, 'myapp/contact_us.html')
 
-# def user_history_view(request):
-#     # Retrieve the number of visits and visit history from the session
-#     visits = request.session.get('visits', 0)
-#     visit_history = request.session.get('visit_history', [])
-    
-#     # Format the timestamps for display
-#     formatted_visit_history = [
-#         parse_datetime(ts).strftime("%Y-%m-%d %H:%M:%S") for ts in visit_history
-#     ]
-
-#     # Pass the formatted visit history to the template
-#     context = {
-#         'visits': visits,
-#         'visit_history': formatted_visit_history
-#     }
-
-#     # Render the template with context
-#     return render(request, 'user_history.html', context)
+def cpass(request):
+    return render(request, 'myapp/forgot_password.html')
