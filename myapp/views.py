@@ -78,7 +78,7 @@ def landing(request):
     return render(request, 'myapp/landing.html')
 
 def contact_us(request):
-    return render(request, 'contact_us.html')
+    return render(request, 'myapp/contact_us.html')
 
 # def user_history_view(request):
 #     # Retrieve the number of visits and visit history from the session
