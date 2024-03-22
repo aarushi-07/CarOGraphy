@@ -1,12 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
-from django.http import HttpResponse
-from django.utils.dateparse import parse_datetime
-from django.http import HttpResponse
-from django.utils.dateparse import parse_datetime
-from django.utils import timezone
-
 
 from myapp.forms import ProfileForm
 
@@ -48,29 +42,8 @@ def register_view(request):
     return render(request, 'register.html')
 
 
-# def home_view(request):
-#     return render(request, 'home.html')
-
 def home_view(request):
-    # Increment the visit counter stored in session
-    request.session['visits'] = request.session.get('visits', 0) + 1
-
-    # Get the current timestamp
-    current_visit_time = timezone.now()
-
-    # Retrieve the visit history from session, or initialize an empty list if not present
-    visit_history = request.session.get('visit_history', [])
-
-    # Append the current visit timestamp to the history
-    visit_history.append(current_visit_time.isoformat())
-
-    # Store the updated visit history back in the session
-    request.session['visit_history'] = visit_history
-
-    # Set session expiry to 2 weeks (1209600 seconds)
-    request.session.set_expiry(1209600)
-
-    return render(request, 'home.html', {'visits': request.session['visits']})
+    return render(request, 'home.html')
 
 
 def update_profile(request):
@@ -100,35 +73,3 @@ def user_guide(request):
         ]
     }
     return render(request, 'UserGuide.html', content)
-
-
-
-# def user_history_view(request):
-#     last_login = request.session.get('last_login')
-#     if last_login:
-#         last_login = parse_datetime(last_login)
-#         last_login_str = last_login.strftime("%Y-%m-%d %H:%M:%S")
-#     else:
-#         last_login_str = "Never"
-
-#     visits = request.COOKIES.get('visits', '0')
-    
-#     return HttpResponse(f"Last Login: {last_login_str}, Number of Visits: {visits}")
-
-
-def contact_us(request):
-    return render(request, 'contact_us.html')
-
-
-
-def user_history_view(request):
-    # Retrieve the number of visits and visit history from session
-    visits = request.session.get('visits', 0)
-    visit_history = request.session.get('visit_history', [])
-
-    # Format the timestamps for display
-    formatted_visit_history = [parse_datetime(ts).strftime("%Y-%m-%d %H:%M:%S") for ts in visit_history]
-
-    history_str = "<br>".join(formatted_visit_history)
-
-    return HttpResponse(f"Total Visits: {visits}<br>Visit History:<br>{history_str}")
