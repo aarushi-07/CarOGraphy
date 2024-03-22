@@ -15,9 +15,9 @@ def login_view(request):
             return redirect('home')
         else:
             # Handle invalid login
-            return render(request, 'login.html', {'error_message': 'Invalid email or password'})
+            return render(request, 'myapp/login.html', {'error_message': 'Invalid email or password'})
     else:
-        return render(request, 'login.html')
+        return render(request, 'myapp/login.html')
 
 
 def register_view(request):
@@ -28,10 +28,10 @@ def register_view(request):
         confirm_password = request.POST.get('confirm_password')
 
         if password != confirm_password:
-            return render(request, 'register.html', {'error_message': 'Passwords do not match'})
+            return render(request, 'myapp/register.html', {'error_message': 'Passwords do not match'})
 
         if User.objects.filter(email=email).exists():
-            return render(request, 'register.html', {'error_message': 'User with this email already exists'})
+            return render(request, 'myapp/register.html', {'error_message': 'User with this email already exists'})
 
         user = User.objects.create_user(username=username,email=email, password=password)
         user.save()
@@ -39,11 +39,11 @@ def register_view(request):
         user = authenticate(request, username=email, password=password)
         login(request, user)
         return redirect('login')
-    return render(request, 'register.html')
+    return render(request, 'myapp/register.html')
 
 
 def home_view(request):
-    return render(request, 'home.html')
+    return render(request, 'myapp/home.html')
 
 
 def update_profile(request):
@@ -57,10 +57,10 @@ def update_profile(request):
     else:
         form = ProfileForm(instance=profile)
 
-    return render(request, 'profile.html', {'form': form})
+    return render(request, 'myapp/profile.html', {'form': form})
 
 def forgot_password(request):
-    return render(request, 'forgot_password.html')
+    return render(request, 'myapp/forgot_password.html')
 
 def user_guide(request):
     content = {
@@ -72,7 +72,7 @@ def user_guide(request):
             },
         ]
     }
-    return render(request, 'UserGuide.html', content)
+    return render(request, 'myapp/UserGuide.html', content)
 
 def landing(request):
     return render(request, 'myapp/landing.html')
