@@ -1,10 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
 import os
-from django.db.models.signals import post_save
-from django.dispatch import receiver
-
-
 
 STATUS = ((0, "Closed"), (1, "Open"))
 ROLES = ((0, "User"), (1, "Service Provider"))
@@ -44,21 +40,3 @@ class Profile(User):
 #     def __str__(self):
 #         return self.title
 
-# Arish
-# extending django built in User class
-# class UserProfile(models.Model):
-#     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
-#     photo = models.ImageField(upload_to=image_file_path, blank=True, null=True)
-#     role = models.CharField(max_length=20, choices=(('client', 'Client'), ('service_provider', 'Service Provider')))
-#     # created_on = models.DateTimeField(auto_now_add=True)
-
-#     def __str__(self):
-#         return f'{self.user.username} Profile'
-
-# # whenever a new user is added @receiver decorator listens for a post save for a new user and creates the user profile part 
-# @receiver(post_save, sender=User)
-# def create_or_update_user_profile(sender, instance, created, **kwargs):
-#     if created:
-#         UserProfile.objects.create(user=instance)
-#     else:
-#         instance.profile.save()
