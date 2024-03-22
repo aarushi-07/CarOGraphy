@@ -5,6 +5,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 
+
 STATUS = ((0, "Closed"), (1, "Open"))
 ROLES = ((0, "User"), (1, "Service Provider"))
 
