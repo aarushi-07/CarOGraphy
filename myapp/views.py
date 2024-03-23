@@ -87,8 +87,7 @@ def contact_us(request):
         subject = request.POST.get('subject')
         message = request.POST.get('message')
         
-        # Add your own logic here to send email or save data to the database
-        # For example, sending an email might look like this:
+        
         send_mail(
             f"Message from {name} - {subject}",
             message,
