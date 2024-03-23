@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
-
+from django.core.mail import send_mail
+from django.contrib import messages
 from myapp.forms import ProfileForm
 
 
@@ -77,8 +78,29 @@ def user_guide(request):
 def landing(request):
     return render(request, 'myapp/landing.html')
 
-def contact_us(request):
-    return render(request, 'myapp/contact_us.html')
 
-def cpass(request):
-    return render(request, 'myapp/forgot_password.html')
+
+def contact_us(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        subject = request.POST.get('subject')
+        message = request.POST.get('message')
+        
+        # Add your own logic here to send email or save data to the database
+        # For example, sending an email might look like this:
+        send_mail(
+            f"Message from {name} - {subject}",
+            message,
+            'internetapplicationsclass@gmail.com',
+            [email],  # Replace with your email
+            fail_silently=False,
+        )
+
+        # Show a success message
+        messages.success(request, 'Your message has been sent!')
+        
+        # Redirect to the same page after POST
+        return redirect('contact-us')
+
+    return render(request, 'myapp/contact_us.html')

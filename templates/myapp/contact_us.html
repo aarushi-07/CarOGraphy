@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 
 
-<title>Get in Touch form - Bootdey.com</title>
+<title>Get in Touch form</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <style type="text/css">
@@ -185,7 +185,8 @@ background:#eee;
 <div class="row">
 <div class="col-lg-7">
 <div class="contact">
-<form class="form" name="enq" method="post" action="contact.php" onsubmit="return validation();">
+    <form class="form" name="enq" method="post" action="{% url 'contact-us' %}">
+        {% csrf_token %}
 <div class="row">
 <div class="form-group col-md-6">
 <input type="text" name="name" class="form-control" placeholder="Name" required="required">
