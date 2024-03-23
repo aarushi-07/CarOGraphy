@@ -5,16 +5,25 @@
     <meta charset="UTF-8">
     <title>Profile</title>
 {#    <link rel="stylesheet" href="{% static 'static/login.css' %}">#}
-    <link rel="stylesheet" href="{% static 'static/profile.css' %}">
+    <link rel="stylesheet" href="{% static 'static/profilePage.css' %}">
+    <link rel="stylesheet" href="{% static 'static/landing.css' %}">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
 </head>
 <body>
+{% include 'myapp/header.html' %}
+ <h1>Update Profile</h1>
 <div class="container">
-    <h1 class="title">Update Profile</h1>
 <form method="POST" class="form-container">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Update Profile</button>
     </form>
 </div>
+{% include 'myapp/footer.html' %}
 </body>
 </html>
