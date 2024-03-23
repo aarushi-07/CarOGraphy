@@ -69,7 +69,8 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'CarOGraphy.wsgi.application'
+# WSGI_APPLICATION = 'CarOGraphy.wsgi.application'
+ASGI_APPLICATION = 'CarOGraphy.asgi.application'
 
 
 # Database
