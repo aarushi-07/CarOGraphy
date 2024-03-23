@@ -11,20 +11,26 @@ ROLES = ((0, "User"), (1, "Service Provider"))
 def image_file_path(instance, filename):
     return f'images/{instance.username}.jpg'
 
-class userchatManager(models.Manager):
+# class userchatManager(models.Manager):
+#     def by_user(self, **kwargs):
+#         user = kwargs.get('user')
+#         lookup = models.Q(first_person=user) | models.Q(second_person=user)
+#         qs = self.get_queryset().filter(lookup).distinct()
+#         return qs
+
+class ChatManager(models.Manager):
     def by_user(self, **kwargs):
         user = kwargs.get('user')
-        lookup = models.Q(first_person=user) | models.Q(second_person=user)
-        qs = self.get_queryset().filter(lookup).distinct()
-        return qs
-
+        lookup = models.Q(user1=user) | models.Q(user2=user)
+        result = self.get_queryset().filter(lookup).distinct()
+        return result
 
 class ChatWindow(models.Model):
     user1 = models.ForeignKey('Profile', on_delete=models.CASCADE, related_name='user1_chats')
     user2 = models.ForeignKey('Profile', on_delete=models.CASCADE, related_name='user2_chats')
     timestamp = models.DateTimeField(auto_now_add=True)
 
-    objects = userchatManager()
+    objects = ChatManager()
 
     class Meta:
         unique_together = ['user1', 'user2']
@@ -90,10 +96,3 @@ class Cargaragedata(models.Model):
     def __str__(self):
         return self.name
 
-
-class ChatManager(models.Manager):
-    def by_user(self, **kwargs):
-        user = kwargs.get('user')
-        lookup = models.Q(user1=user) | models.Q(user2=user)
-        result = self.get_queryset().filter(lookup).distinct()
-        return result
