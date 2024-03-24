@@ -14,12 +14,7 @@ ROLES = ((0, "User"), (1, "Service Provider"))
 def image_file_path(instance, filename):
     return f'images/{instance.username}.jpg'
 
-# class userchatManager(models.Manager):
-#     def by_user(self, **kwargs):
-#         user = kwargs.get('user')
-#         lookup = models.Q(first_person=user) | models.Q(second_person=user)
-#         qs = self.get_queryset().filter(lookup).distinct()
-#         return qs
+
 
 class ChatManager(models.Manager):
     def by_user(self, **kwargs):

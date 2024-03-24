@@ -2,53 +2,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <title>Register</title>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CaroGraphy - Register</title>
-    <link rel="stylesheet" href="{% static 'static/login.css' %}"> <!-- Update static file path -->
+
+    <!-- Include the bootstrap and custom CSS files -->
+    <link rel="stylesheet" href="{% static 'static/bootstrap5.css' %}">
+    <link rel="stylesheet" href="{% static 'static/login.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-    <div class="container">
-        <div class="image-container">
-            <img src="{% static 'static/20945733.jpg' %}" alt="CaroGraphy logo" class="image"> <!-- Update static file path -->
-        </div>
-        <div class="form-container">
-            <h1 class="title">CarOGraphy</h1>
-            <p class="login">Already have an account? <a href="/login/">Login</a></p>
-            <form class="form" method="post" action="">
-                {% csrf_token %}
-                {{ form.username.label }}
-                {{ form.username }}
-                {{ form.email.label }}
-                {{ form.email }}
-                {{ form.role}}
-                {{ form.password1.label }}
-                {{ form.password1 }}
-                {{ form.password2.label }}
-                {{ form.password2 }}
-
-                <button type="submit" class="button">Register</button>
-            </form>
+    <div class="container pt-5">
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-6 text-center">
+                <img src="{% static 'static/20945733.jpg' %}" alt="Forgot Password" class="img-fluid">
+            </div>
+            <div class="form-container">
+                <h1 class="title">CarOGraphy</h1>
+                <label class="login mb-3 mt-3 form-label"> Already have an account? <a href="/login/">Login</a></label>
+                <form class="form" method="post" action="">
+                    {% csrf_token %}
+                    <label class="mb-2 mt-2 form-label">
+                        {{ form.username.label }}
+                        {{ form.username }}
+                    </label>
+                    <label class="mb-2 mt-2 form-label">
+                        {{ form.email.label }}
+                        {{ form.email }}
+                    </label>
+                    <label class="mb-2 mt-2 form-label">
+                        {{ form.role.label }}
+                        {{ form.role }}
+                    </label>
+                    <label class="mb-2 mt-2 form-label">
+                        {{ form.password1.label }}
+                        {{ form.password1 }}
+                    </label>
+                    <label class="mb-2 mt-2 form-label">
+                        {{ form.password2.label }}
+                        {{ form.password2 }}
+                    </label>
+                    <button type="submit" class="btn btn-primary mt-3">Register</button>
+                </form>
+            </div>
         </div>
     </div>
-{# <script>#}
-{#        // Function to validate password and confirm password fields#}
-{#        function validatePassword() {#}
-{#            var password = document.getElementById("id_password").value;#}
-{#            var confirmPassword = document.getElementById("id_confirm_password").value;#}
-{#            if (password !== confirmPassword) {#}
-{#                alert("Passwords do not match!");#}
-{#                return false;#}
-{#            }#}
-{#            return true;#}
-{#        }#}
-{##}
-{#        // Add event listener to form submission#}
-{#        document.querySelector(".form").addEventListener("submit", function(event) {#}
-{#            if (!validatePassword()) {#}
-{#                event.preventDefault(); // Prevent form submission if passwords do not match#}
-{#            }#}
-{#        });#}
-{#    </script>#}
+ <script>
+    // Function to validate password and confirm password fields
+    function validatePassword() {
+        var password = document.getElementById("id_password1").value;  // Update ID to id_password1
+        var confirmPassword = document.getElementById("id_password2").value;  // Update ID to id_password2
+        if (password !== confirmPassword) {
+            alert("Passwords do not match!");
+            return false;
+        }
+        else {
+            alert("User Created Successfully")
+        }
+        return true;
+    }
+
+    // Add event listener to form submission
+    document.querySelector(".form").addEventListener("submit", function(event) {
+        if (!validatePassword()) {
+            event.preventDefault(); // Prevent form submission if passwords do not match
+        }
+    });
+</script>
+
 </body>
 </html>
