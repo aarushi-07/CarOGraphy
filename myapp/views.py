@@ -126,10 +126,10 @@ def contact_us(request):
         )
 
         # Show a success message
-        messages.success(request, 'Your message has been sent!')
+        # messages.success(request, 'Your message has been sent!')
         
         # Redirect to the same page after POST
-        return redirect('contact-us')
+        return redirect('myapp:contact-us')
 
     return render(request, 'myapp/contact_us.html')
 
