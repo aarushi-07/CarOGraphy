@@ -1,0 +1,71 @@
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{##}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <title>Landing</title>#}
+{#    <meta name="viewport" content="width=device-width, initial-scale=1.0">#}
+{##}
+{#    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">#}
+{#    {% load static %}#}
+{#    <link rel="stylesheet" href="{% static 'static/services.css' %}">#}
+{#    <link rel="stylesheet" href="{% static 'static/landing.css' %}">#}
+{#    #}
+{##}
+{#    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>#}
+{#    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>#}
+{#    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">#}
+{##}
+{#</head>#}
+{##}
+{#<body>#}
+{#    {% include 'myapp/header.html' %}#}
+{#    <div class="container">#}
+{#        {% for service in services %}#}
+{#        <div class="box">#}
+{#            <h2>{{ forloop.counter }}</h2>#}
+{#            <h3>{{ service.title }}</h3>#}
+{#            {% if service.image %}#}
+{#            <img src="{{ service.image.url }}" alt="{{ service.title }}" style="max-width: 100%; height: auto;">#}
+{#            {% endif %}#}
+{#            <p>{{ service.description }}</p>#}
+{#            <!-- Button to redirect to another page -->#}
+{#            <a href={% url 'myapp:user_form' %} ?service_id={{ service.id }}" class="btn btn-primary select-service">Select Service</a>#}
+{#        </div>#}
+{#        {% endfor %}#}
+{#    </div>#}
+{#</body>#}
+{##}
+{#</html>#}
+
+
+
+{% extends 'myapp/base.html' %}
+
+{% block title %}home{% endblock %}
+{% load static %}
+{% block additional_stylesheets %}
+        <link rel="stylesheet" href="{% static 'static/services.css' %}">
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container1">
+        {% for service in services %}
+        <div class="box">
+            <h2>{{ forloop.counter }}</h2>
+            <h3>{{ service.title }}</h3>
+            {% if service.image %}
+            <img src="{{ service.image.url }}" alt="{{ service.title }}" style="max-width: 100%; height: auto;">
+            {% endif %}
+            <p>{{ service.description }}</p>
+            <!-- Button to redirect to another page -->
+            <a href={% url 'myapp:user_form' %} ?service_id={{ service.id }}" class="btn btn-primary select-service">Select Service</a>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
