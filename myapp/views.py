@@ -1,29 +1,31 @@
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
-from myapp.forms import  CreateUserForm, ProfileForm, LoginForm
-from myapp.models import Profile
+from django.db.models import Q
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth import authenticate, login, get_user_model
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
 from django.contrib import messages
 from myapp.forms import ProfileForm
+from myapp.models import ChatWindow, Profile, ChatMessage
+from myapp.forms import CreateUserForm, ProfileForm, LoginForm
+from myapp.models import Profile
+from django.contrib.auth.decorators import login_required
+
 
 def authenticate_user(email=None, password=None):
     try:
-        # Try to fetch the user by username from your custom user model
         user = Profile.objects.get(email=email)
         print(user)
-        # Check if the provided password matches the user's password
         if user.check_password(password):
-            print(user)  # Return the user object if authentication succeeds
+            print(user)
             return user
         else:
-            return None  # Return None if the password is incorrect
+            return None
     except Profile.DoesNotExist:
-        return None  # Return None if the user does not exist
+        return None
+
 
 def login_view(request):
-
+    invalid_credentials = False
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
@@ -36,19 +38,20 @@ def login_view(request):
                 login(request, user)
                 return redirect('landing')  # Redirect to the appropriate URL
             else:
-                # If authentication fails, render the login form with an error message
-                error_message = 'Invalid username or password'
+                invalid_credentials = True
+                print(invalid_credentials)
+                return render(request, 'myapp/login.html', {'form': form, 'invalid_credentials': invalid_credentials})
     else:
         form = LoginForm()
-    error_message = 'Invalid username or password'
-    return render(request, 'myapp/login.html', {'form': form,'error_message': error_message})
+    return render(request, 'myapp/login.html', {'form': form, invalid_credentials:'invalid_credentials'})
 
-
-
+@login_required
 def logout_view(request):
     return redirect('login')
 
+
 def register_view(request):
+
     form = CreateUserForm()
     if request.method == 'POST':
         form = CreateUserForm(request.POST)
@@ -56,6 +59,7 @@ def register_view(request):
             form.save()
             user = form.cleaned_data.get('username')
             print(user)
+
             return redirect('login')
     else:
         form = CreateUserForm()
@@ -63,7 +67,6 @@ def register_view(request):
     # If the form is invalid or it's a GET request, include the form in the context
     context = {'form': form}
     return render(request, 'myapp/register.html', context)
-
 
 
 
@@ -80,8 +83,11 @@ def update_profile(request):
 
     return render(request, 'myapp/profile.html', {'form': form})
 
+
 def forgot_password(request):
     return render(request, 'myapp/forgot_password.html')
+
+
 @login_required
 def user_guide(request):
     content = {
@@ -94,9 +100,13 @@ def user_guide(request):
         ]
     }
     return render(request, 'myapp/UserGuide.html', content)
-@login_required
+
+
+@login_required(login_url='login')
 def landing(request):
+
     return render(request, 'myapp/landing.html')
+
 
 def chat(request):
     return render(request, 'myapp/chat.html')
@@ -108,8 +118,7 @@ def contact_us(request):
         email = request.POST.get('email')
         subject = request.POST.get('subject')
         message = request.POST.get('message')
-        
-        
+
         send_mail(
             f"Message from {name} - {subject}",
             message,
@@ -120,8 +129,54 @@ def contact_us(request):
 
         # Show a success message
         messages.success(request, 'Your message has been sent!')
-        
+
         # Redirect to the same page after POST
         return redirect('contact-us')
 
     return render(request, 'myapp/contact_us.html')
+
+
+def logout_view(request):
+    return redirect('login')
+
+
+def chat_application(request, user_id=None):
+    if user_id:
+        # Assuming the logged-in user is the first person in the thread
+        user1 = request.user
+        user2 = get_object_or_404(User, id=user_id)
+        thread, created = Profile.objects.get_or_create(
+            first_person=user1,
+            second_person=user2,
+        )
+        messages = ChatMessage.objects.filter(thread=thread).order_by('timestamp')
+        context = {
+            'thread': thread,
+            'messages': messages,
+        }
+        return render(request, 'myapp/message.html', context)
+    else:
+        users = User.objects.all()
+        context = {'users': users}
+        return render(request, 'myapp/message.html', context)
+
+
+@login_required
+def chat(request, user):
+    # Assuming Profile is related to the custom User model
+    if user.is_authenticated:
+        user_profile = get_object_or_404(Profile, user=request.user)
+        last_active_userchat_id = request.session.get('last_active_userchat_id')
+        userchats = ChatWindow.objects.filter(Q(user1=user_profile) | Q(user2=user_profile)).prefetch_related(
+            'chatmessage_userchat').order_by('timestamp').distinct()
+
+        context = {
+            'userchats': userchats,
+            'last_active_userchat_id': last_active_userchat_id
+        }
+
+        return render(request, 'myapp/message.html', context)
+
+
+# def chat(request):
+#     return render(request, 'myapp/chat.html')
