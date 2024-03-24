@@ -52,3 +52,7 @@ class UserForm(forms.ModelForm):
         model = ServiceForm
         fields = ['firstname', 'lastname', 'phone_number', 'email', 'address', 'garage']
 
+class PaymentForm(forms.Form):
+    card_number = forms.CharField(label='Card Number', max_length=16)
+    cvv = forms.CharField(label='CVV', max_length=3)
+

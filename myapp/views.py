@@ -7,7 +7,7 @@ from myapp.models import Profile, ChatWindow, ChatMessage, CarService, ServiceFo
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
 from django.contrib import messages
-from myapp.forms import ProfileForm,FeedbackForm, UserForm
+from myapp.forms import ProfileForm,FeedbackForm, UserForm, PaymentForm
 
 def authenticate_user(email=None, password=None):
     try:
@@ -209,7 +209,18 @@ def user_form_view(request):
         form = UserForm(request.POST)
         if form.is_valid():
             form.save()  # Saves form data to the database
-            return redirect('https://buy.stripe.com/test_dR66qgamv0pe5565kk')  # Redirect to a success page or another view
+            return redirect('myapp:payment')  # Redirect to a success page or another view
     else:
         form = UserForm()
     return render(request, 'myapp/user_form.html', {'form': form})
+
+def payment_view(request):
+    if request.method == 'POST':
+        form = PaymentForm(request.POST)
+        if form.is_valid():
+            # Process the payment (validate card number, CVV, etc.)
+            # If payment is successful, redirect to payment success pop-up window
+            return render(request, 'myapp/payment_success.html')
+    else:
+        form = PaymentForm()
+    return render(request, 'myapp/payment_form.html', {'form': form})

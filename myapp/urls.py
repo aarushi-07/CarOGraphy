@@ -20,5 +20,6 @@ urlpatterns = [
     path('garage-history/', views.garage_user_history, name='garage_history'),
     path('feedback/', views.feedback_view, name='feedback'),
     path('services/', views.services_view, name='services'),
-    path('user_form/', views.user_form_view, name='user_form')
+    path('user_form/', views.user_form_view, name='user_form'),
+    path('payment/', views.payment_view, name='payment'),
 ]
