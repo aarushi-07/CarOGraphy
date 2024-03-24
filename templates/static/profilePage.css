@@ -1,56 +1,66 @@
-/* Body styles */
-body {
-    background-color: #F1F1F1;
-    display: flex;
-    justify-content: center;
-    align-items: center; /* Center content vertically */
-    height: 90vh; /* Ensure full viewport height */
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    .profile-container {
+        max-width: 40%;
+        margin: 20px auto;
+        padding: 30px;
+        background-color: #fff;
+        border-radius: 15px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+         margin-top: 10%;
+    }
+
+    .avatar {
+        position: relative;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .avatar img {
+        width: 250px;
+        height: 250px;
+        border-radius: 50%;
+        object-fit: cover;
+        transition: all 0.3s ease;
+    }
+
+    .avatar img:hover {
+        transform: scale(1.1);
+        box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .edit-icon {
+  position: absolute;
+  top: 80%;
+  left: 67%;
+  transform: translate(-50%, -50%);
+  background-image: url('pen.png' );
+  width: 100%;
+  height: 100%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  /*border-radius: 50%;*/
 }
 
-/* Container styles */
-.container {
-    width: 50%;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    display: flex;
-    margin-top: 10vh; /* Adjusted margin top */
-}
+    .btn-update,
+    .btn-preferences,
+    .btn-save {
+        width: 150px;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        background-color: #3C71AB;
+        color: #fff;
+    }
 
-/* Form and image container styles */
-.form-container{
-    flex: 1; /* Grow to fill remaining space equally */
-    padding: 20px; /* Added padding */
-}
-
-
-/* Form styles */
-.form {
-    display: flex;
-    flex-direction: column;
-
-}
-
-/* Label styles */
-label {
-    margin-bottom: 8px;
-    color: #333;
-    font-weight: bold;
-
-}
-
-/* Input styles */
-input {
-    width: 70%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box; /* Ensure input width includes padding and border */
-}
-
-/* Button styles */
-button {
+    /* Button styles */
+.btn {
     width: 100%;
     padding: 10px;
     background-color: #3C71AB;
@@ -60,29 +70,25 @@ button {
     cursor: pointer;
 }
 
-button:hover {
+.btn:hover {
     background-color: #2e68a3;
 }
 
-/* Title styles */
-.title {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-/* Media query for smaller screens */
-@media (max-width: 768px) {
-    .container {
-        width: 90%; /* Adjusted width for smaller screens */
-        flex-direction: column; /* Stack elements vertically on smaller screens */
+    label {
+         color: #333;
+         font-weight: bold;
     }
 
-    .form-container,
-    .image-container {
-        width: 100%; /* Full width for smaller screens */
+    .form-group {
+        text-align: left;
+        margin-bottom: 15px;
     }
 
-    .image {
-        max-width: 100%; /* Ensure image responsiveness */
-        max-height: 300px; /* Limit image height for smaller screens */}
-}
+    input[type="text"],
+    input[type="email"]
+    {
+        width: 100%;
+        padding: 8px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }

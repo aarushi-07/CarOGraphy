@@ -1,3 +1,5 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'static/header.css' %}">
 
     <nav class="navbar navbar-fixed-top">
         <div class="container-fluid">
@@ -5,12 +7,11 @@
                 <a class="navbar-brand" href="#" style="color: white">CarOGraphy</a>
             </div>
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#">Services</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
+                <li class="active"><a href={% url 'myapp:home' %}>Home</a></li>
+                <li><a href={% url 'myapp:services' %}>Services</a></li>
+                <li><a href={% url 'myapp:home' %}>About</a></li>
+                <li><a href={% url 'myapp:home' %}>Contact</a></li>
             </ul>
-            <button class="btn btn-danger navbar-btn">Login</button>
-            <button class="btn btn-danger navbar-btn">Signup</button>
-        </div>
+          <a href={% url 'myapp:profile' %}>  <img  class="avatar" src="{% static 'static/userlogin.png' %}" alt="Logo" />
+          </a> </div>
     </nav>
