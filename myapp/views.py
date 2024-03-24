@@ -1,12 +1,13 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
-from myapp.forms import  CreateUserForm, ProfileForm, LoginForm
+from myapp.forms import CreateUserForm, ProfileForm, LoginForm
 from myapp.models import Profile
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
 from django.contrib import messages
-from myapp.forms import ProfileForm
+from myapp.forms import ProfileForm,FeedbackForm
+
 
 def authenticate_user(email=None, password=None):
     try:
@@ -22,8 +23,8 @@ def authenticate_user(email=None, password=None):
     except Profile.DoesNotExist:
         return None  # Return None if the user does not exist
 
-def login_view(request):
 
+def login_view(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
@@ -41,12 +42,12 @@ def login_view(request):
     else:
         form = LoginForm()
     error_message = 'Invalid username or password'
-    return render(request, 'myapp/login.html', {'form': form,'error_message': error_message})
-
+    return render(request, 'myapp/login.html', {'form': form, 'error_message': error_message})
 
 
 def logout_view(request):
     return redirect('login')
+
 
 def register_view(request):
     form = CreateUserForm()
@@ -65,8 +66,6 @@ def register_view(request):
     return render(request, 'myapp/register.html', context)
 
 
-
-
 def update_profile(request):
     profile = request.user
 
@@ -80,8 +79,11 @@ def update_profile(request):
 
     return render(request, 'myapp/profile.html', {'form': form})
 
+
 def forgot_password(request):
     return render(request, 'myapp/forgot_password.html')
+
+
 @login_required
 def user_guide(request):
     content = {
@@ -94,9 +96,12 @@ def user_guide(request):
         ]
     }
     return render(request, 'myapp/UserGuide.html', content)
+
+
 @login_required
 def landing(request):
     return render(request, 'myapp/landing.html')
+
 
 def chat(request):
     return render(request, 'myapp/chat.html')
@@ -108,8 +113,7 @@ def contact_us(request):
         email = request.POST.get('email')
         subject = request.POST.get('subject')
         message = request.POST.get('message')
-        
-        
+
         send_mail(
             f"Message from {name} - {subject}",
             message,
@@ -120,8 +124,21 @@ def contact_us(request):
 
         # Show a success message
         messages.success(request, 'Your message has been sent!')
-        
+
         # Redirect to the same page after POST
         return redirect('contact-us')
 
     return render(request, 'myapp/contact_us.html')
+
+
+def feedback(request):
+    if request.method == 'POST':
+        form = FeedbackForm(request.POST)
+        if form.is_valid():
+            feedback = form.save(commit=False)
+            feedback.user = request.user.profile  # Assuming request.user is authenticated and has a profile
+            feedback.save()
+            return redirect('feedback_success')  # Redirect to a success page after feedback submission
+    else:
+        form = FeedbackForm()
+    return render(request, 'myapp/feedback.html', {'form': form})
