@@ -6,7 +6,7 @@ from myapp.models import Profile
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
 from django.contrib import messages
-from myapp.forms import ProfileForm
+from myapp.forms import ProfileForm,FeedbackForm
 
 def authenticate_user(email=None, password=None):
     try:
@@ -141,3 +141,15 @@ def garage_user_history(request):
     ]
 
     return render(request, 'myapp/garage_user_history.html', {'clicked_garages': clicked_garages})
+
+def feedback_view(request):
+    if request.method == 'POST':
+        form = FeedbackForm(request.POST)
+        if form.is_valid():
+            feedback = form.save(commit=False)
+            feedback.user = request.user.profile  # Assuming request.user is authenticated and has a profile
+            feedback.save()
+            return redirect('feedback_success')  # Redirect to a success page after feedback submission
+    else:
+        form = FeedbackForm()
+    return render(request, 'myapp/feedback.html', {'form': form})
