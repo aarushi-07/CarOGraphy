@@ -20,10 +20,7 @@ urlpatterns = [
     path('contact-us/', views.contact_us, name='contact-us'),
     path('garage-history/', views.garage_user_history, name='garage_history'),
     path('feedback/', views.feedback_view, name='feedback'),    
-<<<<<<< HEAD
-=======
     path('garage-history/', views.garage_user_history, name='garage_history'),
->>>>>>> d619ded (new pull)
 
     path('services/', views.services_view, name='services'),
     path('user_form/', views.user_form_view, name='user_form'),
