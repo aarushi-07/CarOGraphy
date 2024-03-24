@@ -23,7 +23,29 @@ def authenticate_user(email=None, password=None):
     except Profile.DoesNotExist:
         return None  # Return None if the user does not exist
 
+# def login_view(request):
+
+#     if request.method == 'POST':
+#         form = LoginForm(request.POST)
+#         if form.is_valid():
+#             email = form.cleaned_data.get('email')
+#             password = form.cleaned_data.get('password')
+#             user = authenticate_user(email, password)
+#             print(user)
+#             if user is not None:
+#                 # If authentication succeeds, log in the user and redirect
+#                 login(request, user)
+#                 return redirect('landing')  # Redirect to the appropriate URL
+#             else:
+#                 # If authentication fails, render the login form with an error message
+#                 error_message = 'Invalid username or password'
+#     else:
+#         form = LoginForm()
+#     error_message = 'Invalid username or password'
+#     return render(request, 'myapp/login.html', {'form': form,'error_message': error_message})
+    
 def login_view(request):
+    error_message = None  # Initialize error_message as None
 
     if request.method == 'POST':
         form = LoginForm(request.POST)
@@ -31,18 +53,19 @@ def login_view(request):
             email = form.cleaned_data.get('email')
             password = form.cleaned_data.get('password')
             user = authenticate_user(email, password)
-            print(user)
             if user is not None:
-                # If authentication succeeds, log in the user and redirect
                 login(request, user)
                 return redirect('landing')  # Redirect to the appropriate URL
             else:
-                # If authentication fails, render the login form with an error message
                 error_message = 'Invalid username or password'
+        else:
+            # Form itself is invalid, could have other error messages
+            error_message = 'Please correct the below errors.'
     else:
         form = LoginForm()
-    error_message = 'Invalid username or password'
-    return render(request, 'myapp/login.html', {'form': form,'error_message': error_message})
+
+    return render(request, 'myapp/login.html', {'form': form, 'error_message': error_message})
+
 
 
 
