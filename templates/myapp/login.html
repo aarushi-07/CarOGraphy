@@ -1,30 +1,85 @@
+{#{% load static %}#}
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <meta name="viewport" content="width=device-width, initial-scale=1.0">#}
+{#    <title>CaroGraphy - Login</title>#}
+{#    <link rel="stylesheet" href="{% static 'static/login.css' %}">#}
+{#</head>#}
+{#<body>#}
+{#    <div class="container">#}
+{#        <div class="image-container">#}
+{#                <img src="{% static 'static/20945733.jpg' %}" alt="CaroGraphy logo" class="image">#}
+{#            </div>#}
+{#        <div class="form-container">#}
+{#            <h1 class="title">CarOGraphy</h1>#}
+{#            <p class="signup">Don't have an account?<a href="/register/"> Sign up</a></p>#}
+{#            <form class="form" method="post" action="">#}
+{#                {% csrf_token %}#}
+{#                {{ form.email.label }}#}
+{#                {{ form.email }}#}
+{#                {{ form.password.label }}#}
+{#                {{ form.password }}#}
+{#                <button type="submit" class="button">Login</button>#}
+{#                <a class="forgot-password" href="/forgot-password/">Forgot password?</a>#}
+{#            </form>#}
+{#        </div>#}
+{#    </div>#}
+{#</body>#}
+{#</html>#}
+
+
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <title>Login</title>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CaroGraphy - Login</title>
+
+    <link rel="stylesheet" href="{% static 'static/bootstrap5.css' %}">
+
     <link rel="stylesheet" href="{% static 'static/login.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-    <div class="container">
-        <div class="image-container">
-                <img src="{% static 'static/20945733.jpg' %}" alt="CaroGraphy logo" class="image">
+    <div class="container pt-5 bg-light">
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-6 text-center">
+                <img src="{% static 'static/20945733.jpg' %}" alt="Main IMG" class="img-fluid">
             </div>
-        <div class="form-container">
-            <h1 class="title">CarOGraphy</h1>
-            <p class="signup">Don't have an account?<a href="/register/"> Sign up</a></p>
-            <form class="form" method="post" action="{% url 'home' %}">
-                {% csrf_token %}
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" placeholder="Email" required>
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" placeholder="Password" required>
-                <button type="submit" class="button">Login</button>
-                <p class="forgot-password">Forgot password?</p>
-            </form>
+
+            <div class="col-12 col-sm-12 col-md-12 col-lg-6 pt-5">
+                <h2 class="main-text pt-5 mt-5">Don't Have an Account? <a href="/register.html/">Sign Up</a></h2>
+                <form class="d-flex flex-column" method="post">
+                    {% csrf_token %}
+                    <div class="mb-3 mt-3">
+                        <label for="email " class="form-label">Email</label>
+                        {{ form.email }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        {{ form.password }}
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <button type="submit" class="btn btn-primary mt-3">Log In</button>
+                        </div>
+                        <div class="col-6 pt-4">
+                            <a href="/forgot-password/" class="back-to-login">Forgot Password ?</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
+    <!-- Bootstrap & jQuery Scripts that i have commented out for now-->
+    <!-- <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/bootstrap5.js' %}"></script> -->
 </body>
 </html>

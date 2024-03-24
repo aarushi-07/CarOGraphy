@@ -15,7 +15,6 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
@@ -103,6 +102,12 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+]
+
+
+
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
@@ -129,7 +134,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # added by Arish
 # SMTP Config
-# for the reset password features 
+# for the reset password features
 
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_BACKEND = 'django_smtp_ssl.SSLEmailBackend'
@@ -139,3 +144,12 @@ EMAIL_PORT = 465
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'internetapplicationsclass@gmail.com'
 EMAIL_HOST_PASSWORD = 'mnvkczrujdqhpetq'
+
+CHANNEL_LAYERS = {
+    'default':{
+        'Backend': 'channel.layers.InMemoryChannelLayer',
+        # 'CONFIG':{
+        #     'hosts': [('localhost',6379)],
+        # }
+    }
+}

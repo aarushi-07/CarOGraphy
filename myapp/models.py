@@ -5,6 +5,9 @@ import os
 from django.contrib.auth import get_user_model
 from django.db.models import Q
 
+from django.contrib.auth.backends import ModelBackend
+from django.contrib.auth import get_user_model
+
 STATUS = ((0, "Closed"), (1, "Open"))
 ROLES = ((0, "User"), (1, "Service Provider"))
 
@@ -59,7 +62,7 @@ class Profile(User):
     role = models.IntegerField(choices=ROLES, default=0)
     photo = models.ImageField(upload_to=image_file_path, null=True)
 
-    def __str__(self):
+    def _str_(self):
         return self.first_name + " " + self.last_name
 
     def save(self, *args, **kwargs):
@@ -96,3 +99,10 @@ class Cargaragedata(models.Model):
     def __str__(self):
         return self.name
 
+
+class ChatManager(models.Manager):
+    def by_user(self, **kwargs):
+        user = kwargs.get('user')
+        lookup = models.Q(user1=user) | models.Q(user2=user)
+        result = self.get_queryset().filter(lookup).distinct()
+        return result

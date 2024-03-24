@@ -1,50 +1,70 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
+from myapp.forms import  CreateUserForm, ProfileForm, LoginForm
+from myapp.models import Profile
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
 from django.contrib import messages
 from myapp.forms import ProfileForm
 
+def authenticate_user(email=None, password=None):
+    try:
+        # Try to fetch the user by username from your custom user model
+        user = Profile.objects.get(email=email)
+        print(user)
+        # Check if the provided password matches the user's password
+        if user.check_password(password):
+            print(user)  # Return the user object if authentication succeeds
+            return user
+        else:
+            return None  # Return None if the password is incorrect
+    except Profile.DoesNotExist:
+        return None  # Return None if the user does not exist
 
 def login_view(request):
-    if request.method == 'POST':
-        email = request.POST.get('email')
-        password = request.POST.get('password')
-        user = authenticate(request, email=email, password=password)
-        if user is not None:
-            login(request, user)
-            return redirect('home')
-        else:
-            # Handle invalid login
-            return render(request, 'myapp/login.html', {'error_message': 'Invalid email or password'})
-    else:
-        return render(request, 'myapp/login.html')
 
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            email = form.cleaned_data.get('email')
+            password = form.cleaned_data.get('password')
+            user = authenticate_user(email, password)
+            print(user)
+            if user is not None:
+                # If authentication succeeds, log in the user and redirect
+                login(request, user)
+                return redirect('landing')  # Redirect to the appropriate URL
+            else:
+                # If authentication fails, render the login form with an error message
+                error_message = 'Invalid username or password'
+    else:
+        form = LoginForm()
+    error_message = 'Invalid username or password'
+    return render(request, 'myapp/login.html', {'form': form,'error_message': error_message})
+
+
+
+def logout_view(request):
+    return redirect('login')
 
 def register_view(request):
+    form = CreateUserForm()
     if request.method == 'POST':
-        username = request.POST.get('username')
-        email = request.POST.get('email')
-        password = request.POST.get('password')
-        confirm_password = request.POST.get('confirm_password')
+        form = CreateUserForm(request.POST)
+        if form.is_valid():
+            form.save()
+            user = form.cleaned_data.get('username')
+            print(user)
+            return redirect('login')
+    else:
+        form = CreateUserForm()
 
-        if password != confirm_password:
-            return render(request, 'myapp/register.html', {'error_message': 'Passwords do not match'})
-
-        if User.objects.filter(email=email).exists():
-            return render(request, 'myapp/register.html', {'error_message': 'User with this email already exists'})
-
-        user = User.objects.create_user(username=username,email=email, password=password)
-        user.save()
-
-        user = authenticate(request, username=email, password=password)
-        login(request, user)
-        return redirect('login')
-    return render(request, 'myapp/register.html')
+    # If the form is invalid or it's a GET request, include the form in the context
+    context = {'form': form}
+    return render(request, 'myapp/register.html', context)
 
 
-def home_view(request):
-    return render(request, 'myapp/home.html')
 
 
 def update_profile(request):
@@ -62,7 +82,7 @@ def update_profile(request):
 
 def forgot_password(request):
     return render(request, 'myapp/forgot_password.html')
-
+@login_required
 def user_guide(request):
     content = {
         'title': 'Carography User Guide',
@@ -74,7 +94,7 @@ def user_guide(request):
         ]
     }
     return render(request, 'myapp/UserGuide.html', content)
-
+@login_required
 def landing(request):
     return render(request, 'myapp/landing.html')
 
