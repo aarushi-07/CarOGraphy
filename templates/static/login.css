@@ -1,6 +1,6 @@
 /* Body styles */
 body {
-    background-color: #F1F1F1;
+    background-color: white;
     display: flex;
     justify-content: center;
     align-items: center; /* Center content vertically */
@@ -107,4 +107,58 @@ button:hover {
     .image {
         max-width: 100%; /* Ensure image responsiveness */
         max-height: 300px; /* Limit image height for smaller screens */}
+}
+
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: white;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1140px;
+    margin: auto;
+}
+
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+}
+
+.main-text {
+    color: #333;
+    font-weight: bold;
+}
+
+.main-input {
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    padding: 20px;
+    font-size: 16px;
+}
+
+.btn-sz-primary {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.btn-sz-primary:hover {
+    background-color: #0056b3;
+}
+
+.back-to-login {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.back-to-login:hover {
+    color: #0056b3;
 }
