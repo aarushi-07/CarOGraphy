@@ -28,8 +28,7 @@ def authenticate_user(email=None, password=None):
         else:
             return None
     except Profile.DoesNotExist:
-        return None
-
+        return None  # Return None if the user does not exist
 
 def login_view(request):
     invalid_credentials = False
