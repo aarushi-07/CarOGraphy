@@ -131,11 +131,12 @@ def contact_us(request):
         message = request.POST.get('message')
         
         
+        email2 = 'djangoclass34@gmail.com'
         send_mail(
-            f"Message from {name} - {subject}",
+            f"Message from {name} - {email} - {subject}",
             message,
             'internetapplicationsclass@gmail.com',
-            [email],  # Replace with your email
+            [email2],  # Replace with your email
             fail_silently=False,
         )
 
