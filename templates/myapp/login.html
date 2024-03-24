@@ -1,10 +1,14 @@
+<<<<<<< HEAD
 {% load static %}
+=======
+>>>>>>> c5c2005 (made new login page and updated error bug in view func)
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
 
     <!-- Include the bootstrap and custom CSS files -->
     <link rel="stylesheet" href="{% static 'static/bootstrap5.css' %}">
@@ -36,10 +40,64 @@
                     </label>
                     <label><a href="/password_reset/">Forgot Password ?</a></label>
                     <button type="submit" class="btn btn-primary mt-3">Login</button>
+=======
+    <title>Login - CarOgraphy</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css">
+    <style>
+        .divider:after,
+        .divider:before {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: #eee;
+        }
+        /* Additional custom styles */
+    </style>
+</head>
+<body>
+
+<section class="vh-100">
+    <div class="container py-5 h-100">
+        <div class="row d-flex align-items-center justify-content-center h-100">
+            <div class="col-12 text-center mb-5">
+                <h1>Welcome to CarOgraphy</h1>
+            </div>
+            <div class="col-md-8 col-lg-7 col-xl-6">
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg" class="img-fluid" alt="Phone image">
+            </div>
+            <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+                {% if error_message %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ error_message }}
+                    </div>
+                {% endif %}
+                <form method="post" action="">
+                    {% csrf_token %}
+                    <div class="form-outline mb-4">
+                        {{ form.email }}
+                        <label class="form-label" for="{{ form.email.id_for_label }}">Email address</label>
+                    </div>
+
+                    <div class="form-outline mb-4">
+                        {{ form.password }}
+                        <label class="form-label" for="{{ form.password.id_for_label }}">Password</label>
+                    </div>
+
+                    <div class="d-flex justify-content-around align-items-center mb-4">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="form1Example3" name="remember_me" {{ form.remember_me.value|yesno:"checked," }}>
+                            <label class="form-check-label" for="form1Example3"> Remember me </label>
+                        </div>
+                        <a href="{% url 'password_reset' %}">Forgot password?</a>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
+>>>>>>> c5c2005 (made new login page and updated error bug in view func)
                 </form>
             </div>
         </div>
     </div>
+<<<<<<< HEAD
 
     <!-- Popup Box for Invalid Credentials -->
     <div id="popup-box" style="display: none; position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%); background-color: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.5);">
@@ -58,5 +116,11 @@
             displayPopupBox();
         {% endif %}
     </script>
+=======
+</section>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.bundle.min.js"></script>
+
+>>>>>>> c5c2005 (made new login page and updated error bug in view func)
 </body>
 </html>
