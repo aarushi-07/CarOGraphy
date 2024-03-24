@@ -13,10 +13,10 @@ urlpatterns = [
     path('register/', views.register_view, name='register'),
     path('profile/', views.update_profile, name='profile'),
     path('password_reset/', auth_views.PasswordResetView.as_view(
-        template_name='myapp/password_reset.html',
-        email_template_name='myapp/password_reset_email.html',
-        success_url=reverse_lazy('myapp:password_reset_done')
-    ), name='password_reset'),
+    template_name='myapp/password_reset.html',
+    email_template_name='registration/password_reset_email.html',  # Note the path here
+    success_url=reverse_lazy('myapp:password_reset_done')
+), name='password_reset'),
     path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(
         template_name='myapp/password_reset_done.html'
     ), name='password_reset_done'),
