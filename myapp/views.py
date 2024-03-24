@@ -12,7 +12,7 @@ from django.core.mail import send_mail
 from django.contrib import messages
 from myapp.forms import ProfileForm,FeedbackForm, UserForm
 from myapp.forms import ProfileForm
-from myapp.models import ChatWindow, Profile, ChatMessage
+from myapp.models import ChatWindow, Profile, ChatMessage, Cargaragedata
 from myapp.forms import CreateUserForm, ProfileForm, LoginForm
 from myapp.models import Profile
 from django.contrib.auth.decorators import login_required
@@ -106,7 +106,21 @@ def user_guide(request):
 
 @login_required(login_url='login')
 def landing(request):
-    return render(request, 'myapp/landing.html')
+    allgarages = Cargaragedata.objects.all()[0]
+    services = CarService.objects.all()[0:3]
+    garage_rating = int(allgarages.rating)
+    # Convert rating to a list of stars
+    stars = [1] * garage_rating  # Assuming 1 star per item
+    return render(request, 'myapp/landing.html', {'allgarages': allgarages,'services': services, 'stars': stars})
+
+def garages(request):
+    query = request.GET.get('q')  # Get the search query from the request
+    if query:
+        allgarages = Cargaragedata.objects.filter(name__icontains=query)  # Filter garages by name
+    else:
+        allgarages = Cargaragedata.objects.all()  # If no query, get all garages
+
+    return render(request, 'myapp/garages.html', {'allgarages': allgarages})
 
 def chat(request):
     return render(request, 'myapp/chat.html')
@@ -251,7 +265,11 @@ def messages(request):
 
 def home_view(request):
     services = CarService.objects.all()[0:3]
-    return render(request, 'myapp/home.html', {'services': services})
+    allgarages = Cargaragedata.objects.all()[0]
+    garage_rating = int(allgarages.rating)
+    # Convert rating to a list of stars
+    stars = [1] * garage_rating  # Assuming 1 star per item
+    return render(request, 'myapp/home.html', {'services': services, 'allgarages': allgarages,  'stars': stars})
 
 def services(request):
     return render(request, 'myapp/services.html')
@@ -269,3 +287,17 @@ def user_form_view(request):
     else:
         form = UserForm()
     return render(request, 'myapp/user_form.html', {'form': form})
+
+def reviews(request):
+    return render(request, 'myapp/reviews.html')
+
+
+def garage_details(request, garage_id):
+    # Retrieve garage details based on garage_id
+
+
+    garage = Cargaragedata.objects.get(id=garage_id)
+    garage_rating = int(garage.rating)
+    # Convert rating to a list of stars
+    stars = [1] * garage_rating  # Assuming 1 star per item
+    return render(request, 'myapp/garage_details.html', {'garage': garage, 'stars': stars})
