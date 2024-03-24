@@ -39,9 +39,7 @@ def login_view(request):
             email = form.cleaned_data.get('email')
             password = form.cleaned_data.get('password')
             user = authenticate_user(email, password)
-            print(user)
             if user is not None:
-                # If authentication succeeds, log in the user and redirect
                 login(request, user)
                 return redirect('landing')  # Redirect to the appropriate URL
             else:
