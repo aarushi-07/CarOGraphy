@@ -106,3 +106,14 @@ class ChatManager(models.Manager):
         lookup = models.Q(user1=user) | models.Q(user2=user)
         result = self.get_queryset().filter(lookup).distinct()
         return result
+
+# feedback/models.py
+
+class Feedback(models.Model):
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    message = models.TextField()
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Feedback from {self.user}"
+
