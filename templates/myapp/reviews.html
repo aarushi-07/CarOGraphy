@@ -1,0 +1,32 @@
+{% extends 'myapp/base.html' %}
+
+{% block title %}review{% endblock %}
+{% load static %}
+{% block additional_stylesheets %}
+<link rel="stylesheet" href="{% static 'static/landing.css' %}">
+{% endblock %}
+{% block content %}
+
+<div class="row garages" style="margin-top: 50px;margin-bottom: 20px">
+     <div class="row custreview">
+          <form method="GET" action="" style="display: flex">
+        <input class="form-control" id="myInput" type="text" name="q" placeholder="Search.."
+               style="width: 80%;display: block; margin:  10px auto"
+               value="{{ request.GET.q }}">
+        <span><button type="submit" class="btn btn-primary" style="display: block; margin-right: 30px;margin-top: 10px ">Search</button> </span>
+    </form>
+        <div class="row">
+
+            <div class="col-sm-12 reviewcontent" style="width: 97%">
+                <h3>Mr.Lube</h3>
+               <p> “Quality maintained at every single visit! Their attention to details is
+                impeccable, their cleaning products are top notch and their staff are the friendliest i have ever met
+                Great service, great app.”</p>
+                <p style="float: right">- xyz</p>
+            </div>
+</div>
+
+
+        </div>
+</div>
+{% endblock %}

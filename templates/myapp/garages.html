@@ -1,0 +1,52 @@
+{% extends 'myapp/base.html' %}
+
+{% block title %}Landing{% endblock %}
+{% load static %}
+{% block additional_stylesheets %}
+<link rel="stylesheet" href="{% static 'static/landing.css' %}">
+    <link rel="stylesheet" href="{% static 'static/header.css' %}">
+{% endblock %}
+{% block content %}
+
+ <div class="row garages" style="margin-top: 50px;margin-bottom: 20px">
+           <form method="GET"  style="display: flex">
+        <input class="form-control" id="myInput" type="text" name="q" placeholder="Search.."
+               style="width: 80%;display: block; margin:  10px auto"
+               value="{{ request.GET.q }}">
+        <span><button type="submit" class="btn btn-primary" style="display: block; margin-right: 30px;margin-top: 10px ">Search</button> </span>
+    </form>
+            {% for garage in allgarages %}
+            <div class="row garagescontent" >
+            <div class="col-sm-4"><img
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSidYPqHQv4TMtSTsVVwmhUt0eKRYiPuTKeJQ&usqp=CAU"
+                    class="img-thumbnail" alt="Cinque Terre">
+
+            </div>
+            <div class="col-sm-8">
+                <div class="row d-flex align-items-center justify-content-center">
+                    <div class="col-sm-5">
+                        <h3 style="font-weight: bold;padding-bottom: 10px" >{{garage.name}}</h3>
+                        <p>{{garage.address}}</p>
+{#                        <p>Windsor, ON K6A 2J3</p>#}
+                        <p>{{garage.contact_number}}</p>
+                    </div>
+                    <div class="col-sm-2 align-self-center">location</div>
+                    <div class="col-sm-5 text-center">
+                    <span class="fa fa-star checked" style="color: orange"></span>
+                    <span class="fa fa-star checked" style="color: orange"></span>
+                    <span class="fa fa-star checked" style="color: orange"></span>
+                    <span class="fa fa-star" style="color: orange"></span>
+                    <span class="fa fa-star" style="color: orange"></span>
+
+                        <span> {{ garage.rating }}</span>
+{#                        <p> closed</p>#}
+                      <p>  <a href={% url 'myapp:garage_details' garage_id=garage.id %}>see more details ❯</a> </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+            {% endfor %}
+
+
+        </div>
+{% endblock %}

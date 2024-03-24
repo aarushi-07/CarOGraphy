@@ -57,52 +57,70 @@
             Customer Review
         </div>
         <div class="row">
-            <div class="col-sm-6 reviewcontent">“Quality maintained at every single visit! Their attention to details is
+             <div class="col-sm-6 reviewcontent" style="width: 47%">
+                <h3>Mr.Lube</h3>
+               <p> “Quality maintained at every single visit! Their attention to details is
                 impeccable, their cleaning products are top notch and their staff are the friendliest i have ever met
-                Great service, great app.”
-                <p>-xyz</p>
+                Great service, great app.”</p>
+                <p style="float: right">- xyz</p>
             </div>
-            <div class="col-sm-6 reviewcontent">“Quality maintained at every single visit! Their attention to details is
+            <div class="col-sm-6 reviewcontent" >
+                <h3>Mr.Lube</h3>
+               <p> “Quality maintained at every single visit! Their attention to details is
                 impeccable, their cleaning products are top notch and their staff are the friendliest i have ever met
-                Great service, great app.”
-                <p>-xyz</p>
+                Great service, great app.”</p>
+                <p style="float: right">- xyz</p>
             </div>
         </div>
     <div class="cntr">
-            <a href="{% url 'myapp:home' %}" class="btn btn-danger btng">See Other Reviews ❯</a>
+            <a href="{% url 'myapp:reviews' %}" class="btn btn-danger btng">See Other Reviews ❯</a>
 
         </div>
     </div>
 
-    <div class="row garages">
+     <div class="row garages">
         <div class="titles">
             Garages
         </div>
-        <div class="row garagescontent">
-            <div class="col-sm-4"><img
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSidYPqHQv4TMtSTsVVwmhUt0eKRYiPuTKeJQ&usqp=CAU"
-                    class="img-thumbnail" alt="Cinque Terre">
-
+       <div class="row garagescontent">
+            <div class="col-sm-4">
+                <img
+{#                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSidYPqHQv4TMtSTsVVwmhUt0eKRYiPuTKeJQ&usqp=CAU"#}
+{#                    class="img-thumbnail" alt="Cinque Terre">#}
+                {% if allgarages.image %}
+                <img class="img-thumbnail" src="{{ allgarages.image.url }}"
+                     style="max-width: 100%; height: 200px; width: 275px"
+                >
+                {% endif %}
             </div>
             <div class="col-sm-8">
                 <div class="row d-flex align-items-center justify-content-center">
                     <div class="col-sm-5">
-                        <h3 style="font-weight: bold;padding-bottom: 10px">Mr. Lube</h3>
-                        <p>640 Main Street West</p>
+                        <h3 style="font-weight: bold;padding-bottom: 10px" >{{allgarages.name}}</h3>
+                        <p>{{allgarages.address}}</p>
                         <p>Windsor, ON K6A 2J3</p>
-                        <p>(123)635-4587</p>
+                        <p>{{allgarages.contact_number}}</p>
                     </div>
                     <div class="col-sm-2 align-self-center">location</div>
                     <div class="col-sm-5 text-center">
-                        <p> closed</p>
-                        <a href="">see more details ❯</a>
+{#                    <span class="fa fa-star checked" style="color: orange"></span>#}
+{#                    <span class="fa fa-star checked" style="color: orange"></span>#}
+{#                    <span class="fa fa-star checked" style="color: orange"></span>#}
+{#                    <span class="fa fa-star" style="color: orange"></span>#}
+{#                    <span class="fa fa-star" style="color: orange"></span>#}
+                        {% for _ in stars %}
+               <span class="fa fa-star checked" style="color: orange"></span>
+            {% endfor %}
+                        <span> {{ allgarages.rating }}</span>
+                        <p>
+                        <a href={% url 'myapp:garage_details' garage_id=allgarages.id %}>see more details ❯</a>
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
         <div class="cntr">
-            <a href="{% url 'myapp:home' %}" class="btn btn-danger btng">See All Garages ❯</a>
-
+            <a href="{% url 'myapp:garages' %}" class="btn btn-danger btng">See All Garages ❯</a>
         </div>
     </div>
 {% endblock %}

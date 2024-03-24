@@ -38,4 +38,7 @@ urlpatterns = [
 
     path('services/', views.services_view, name='services'),
     path('user_form/', views.user_form_view, name='user_form'),
+    path('garages/', views.garages, name='garages'),
+    path('reviews/', views.reviews, name='reviews'),
+    path('details/<int:garage_id>/', views.garage_details, name='garage_details'),
 ]
