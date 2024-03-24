@@ -1,8 +1,9 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
+from django.db.models import Q
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login
 from myapp.forms import  CreateUserForm, ProfileForm, LoginForm
-from myapp.models import Profile
+from myapp.models import Profile, ChatWindow, ChatMessage
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
 from django.contrib import messages
@@ -153,3 +154,41 @@ def feedback_view(request):
     else:
         form = FeedbackForm()
     return render(request, 'myapp/feedback.html', {'form': form})
+
+
+def chat_application(request, user_id=None):
+    if user_id:
+        # Assuming the logged-in user is the first person in the thread
+        user1 = request.user
+        user2 = get_object_or_404(User, id=user_id)
+        thread, created = Thread.objects.get_or_create(
+            first_person=user1,
+            second_person=user2,
+        )
+        messages = ChatMessage.objects.filter(thread=thread).order_by('timestamp')
+        context = {
+            'thread': thread,
+            'messages': messages,
+        }
+        return render(request, 'myapp/message.html', context)
+    else:
+        users = User.objects.all()
+        context = {'users': users}
+        return render(request, 'myapp/message.html', context)
+
+class Thread:
+    pass
+
+# @login_required
+def messages(request):
+
+    user_profile = Profile.objects.get(user=request.user)
+    last_active_userchat_id = request.session.get('last_active_userchat_id')
+    userchats = ChatWindow.objects.filter(Q(user1=user_profile) | Q(user2=user_profile)).prefetch_related('chatmessage_userchat').order_by('timestamp').distinct()
+
+    context = {
+        'userchats': userchats,
+        'last_active_userchat_id': last_active_userchat_id
+    }
+
+    return render(request, 'myapp/message.html', context)
