@@ -2,16 +2,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="{% static 'static/landing.css' %}">
     <link rel="stylesheet" href="{% static 'static/garage_details.css'%}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-<title>Car Garage Details</title>
+    <title>Car Garage Details</title>
 </head>
 <body>
 {% include 'myapp/header.html' %}
@@ -19,21 +18,28 @@
 <div class="car-garage" id="carGarage{{ garage.id }}" style="height: 600px">
     <div style="flex: 1;">
         <h1 style="font-weight: 700">{{ garage.name }}</h1>
-        <img class="car-image" src="{% static 'static/garage1.jpg' %}" alt="Car Garage Image">
-{#        <img class="car-image" src="https://via.placeholder.com/200x200" alt="Car Garage Image">#}
+        {% if garage.image %}
+            <img class="car-image" src="{{ garage.image.url }}" alt="Car Garage Image">
+        {% endif %}
+{#        <img class="car-image" src="{{ garage_images|get_item:garage.id }}" alt="Car Garage Image">#}
     </div>
     <div style="flex: 2;">
-        <p><strong>Rating:</strong> {{ garage.rating }}</p>
+        <p><strong>Rating:</strong>
+            {% for _ in stars %}
+                <i class="fa fa-star" style="color: gold"></i>
+            {% endfor %}
+        </p>
         <p><strong>Address:</strong> {{ garage.address }}</p>
         <p><strong>Contact Number:</strong> {{ garage.contact_number }}</p>
-        <p><strong>Website:</strong> <a href="{{ garage.website }}" target="_blank">{{ garage.website }}</a></p>
+        <p><strong>Website:</strong> <a href="{{ garage.website }}" target="_blank">Visit the Website</a></p>
         <br>
         <button class="feedback-button" onclick="openFeedbackForm()">Feedback</button>
         <button class="chat-button" onclick="openChat()">Chat</button>
     </div>
 </div>
 
+
+
 {% include 'myapp/footer.html' %}
 </body>
-
 </html>
