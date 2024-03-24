@@ -8,4 +8,5 @@ admin.site.register(Profile)
 # admin.site.register(Cargaragedata)
 # admin.site.register(ChatWindow)
 # admin.site.register(ChatMessage)
+admin.site.register(Feedback)
 
