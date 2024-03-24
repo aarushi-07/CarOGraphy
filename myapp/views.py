@@ -41,14 +41,14 @@ def login_view(request):
             user = authenticate_user(email, password)
             if user is not None:
                 login(request, user)
-                return redirect('landing')  # Redirect to the appropriate URL
+                return redirect('myapp:landing')  # Redirect to the appropriate URL
             else:
                 invalid_credentials = True
                 print(invalid_credentials)
                 return render(request, 'myapp/login.html', {'form': form, 'invalid_credentials': invalid_credentials})
     else:
         form = LoginForm()
-    return render(request, 'myapp/login.html', {'form': form, invalid_credentials:'invalid_credentials'})
+    return render(request, 'myapp/login.html', {'form': form, 'invalid_credentials' : invalid_credentials})
 
 @login_required
 def logout_view(request):
@@ -62,7 +62,7 @@ def register_view(request):
             form.save()
             user = form.cleaned_data.get('username')
             print(user)
-            return redirect('login')
+            return redirect('myapp:login')
     else:
         form = CreateUserForm()
 
