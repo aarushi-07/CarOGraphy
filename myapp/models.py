@@ -11,8 +11,10 @@ from django.contrib.auth import get_user_model
 STATUS = ((0, "Closed"), (1, "Open"))
 ROLES = ((0, "User"), (1, "Service Provider"))
 
+
 def image_file_path(instance, filename):
     return f'images/{instance.username}.jpg'
+
 
 # class userchatManager(models.Manager):
 #     def by_user(self, **kwargs):
@@ -27,6 +29,7 @@ class ChatManager(models.Manager):
         lookup = models.Q(user1=user) | models.Q(user2=user)
         result = self.get_queryset().filter(lookup).distinct()
         return result
+
 
 class ChatWindow(models.Model):
     user1 = models.ForeignKey('Profile', on_delete=models.CASCADE, related_name='user1_chats')
@@ -57,6 +60,7 @@ class ChatMessage(models.Model):
 
     def _str_(self):
         return f"Message from {self.user} in conversation between {self.chat_window.user1} and {self.chat_window.user2}"
+
 
 class Profile(User):
     role = models.IntegerField(choices=ROLES, default=0)
@@ -91,7 +95,7 @@ class Profile(User):
 
 class Cargaragedata(models.Model):
     name = models.CharField(max_length=100)
-    rating = models.DecimalField(max_digits=3,decimal_places=1)
+    rating = models.DecimalField(max_digits=3, decimal_places=1)
     address = models.CharField(max_length=200)
     contact_number = models.CharField(max_length=20)
     website = models.URLField()
@@ -106,3 +110,12 @@ class ChatManager(models.Manager):
         lookup = models.Q(user1=user) | models.Q(user2=user)
         result = self.get_queryset().filter(lookup).distinct()
         return result
+
+
+class Feedback(models.Model):
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    message = models.TextField()
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Feedback from {self.user}"
