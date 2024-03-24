@@ -1,63 +1,73 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Login</title>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Include the bootstrap and custom CSS files -->
-    <link rel="stylesheet" href="{% static 'static/bootstrap5.css' %}">
-    <link rel="stylesheet" href="{% static 'static/login.css' %}">
-    <link rel="stylesheet" href="{% static 'static/forgot_password_style.css' %}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Login - CarOgraphy</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css">
+    <style>
+        .divider:after,
+        .divider:before {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: #eee;
+        }
+        /* Additional styles if needed */
+    </style>
 </head>
 <body>
-    <div class="container pt-5">
-        <div class="row">
-            <div class="col-12 col-sm-12 col-md-12 col-lg-6 text-center">
-                <img src="{% static 'static/20945733.jpg' %}" alt="Forgot Password" class="img-fluid">
+
+<section class="vh-100">
+    <div class="container py-5 h-100">
+        <div class="row d-flex align-items-center justify-content-center h-100">
+            <div class="col-12 text-center mb-5">
+                <h1>Welcome to CarOgraphy</h1>
             </div>
-            <div class="form-container">
-                <h1 class="title">CarOGraphy</h1>
-                <label class="login mb-3 mt-3 form-label"> Already have an account? <a href="/register/">Sign Up</a></label>
-                <form class="form" method="post" action="">
+            <div class="col-md-8 col-lg-7 col-xl-6">
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
+                    class="img-fluid" alt="Phone image">
+            </div>
+            <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+                <form action="/login/" method="POST">
                     {% csrf_token %}
-                    <label class="mb-2 mt-2 form-label">
-                        {{ form.email.label }}
-                        {{ form.email }}
-                    </label>
-                    <label class="mb-2 mt-2 form-label">
-                        {{ form.password.label }}
-                        {{ form.password }}
-                    </label>
-                    <label><a href="/password_reset/">Forgot Password ?</a></label>
-                    <button type="submit" class="btn btn-primary mt-3">Login</button>
+                    <!-- Email input -->
+                    <div class="form-outline mb-4">
+                        <input type="email" id="form1Example13" name="email" class="form-control form-control-lg" />
+                        <label class="form-label" for="form1Example13">Email address</label>
+                    </div>
+
+                    <!-- Password input -->
+                    <div class="form-outline mb-4">
+                        <input type="password" id="form1Example23" name="password" class="form-control form-control-lg" />
+                        <label class="form-label" for="form1Example23">Password</label>
+                    </div>
+
+                    <!-- Checkbox and forgot password link -->
+                    <div class="d-flex justify-content-around align-items-center mb-4">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="form1Example3" checked />
+                            <label class="form-check-label" for="form1Example3"> Remember me </label>
+                        </div>
+                        <a href="#!">Forgot password?</a>
+                    </div>
+
+                    <!-- Display error message for invalid credentials -->
+                    {% if invalid_credentials %}
+                    <div class="alert alert-danger" role="alert">
+                        Invalid email or password.
+                    </div>
+                    {% endif %}
+
+                    <!-- Submit button -->
+                    <button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
                 </form>
             </div>
         </div>
     </div>
+</section>
 
-    <!-- Popup Box for Invalid Credentials -->
-    <div id="popup-box" style="display: none; position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%); background-color: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.5);">
-        <p>Invalid login credentials. Please try again.</p>
-        <button onclick="document.getElementById('popup-box').style.display='none'">Close</button>
-    </div>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Bootstrap & jQuery Scripts that I have commented out for now-->
-    <script>
-        function displayPopupBox() {
-            var popupBox = document.getElementById('popup-box');
-            popupBox.style.display = 'block';
-        }
-
-        {% if invalid_credentials %}
-            displayPopupBox();
-        {% endif %}
-    </script>
 </body>
 </html>
