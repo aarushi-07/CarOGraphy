@@ -12,7 +12,7 @@ class ProfileForm(forms.ModelForm):
 
     class Meta:
         model = Profile
-        fields = ['first_name', 'last_name', 'email', 'role', 'photo', 'username']
+        fields = ['first_name', 'last_name', 'email', 'photo', 'username']
 
 
 class CreateUserForm(forms.ModelForm):
@@ -21,7 +21,7 @@ class CreateUserForm(forms.ModelForm):
 
     class Meta:
         model = Profile
-        fields = ['username', 'email', 'role', 'password1', 'password2']
+        fields = ['username', 'email', 'password1', 'password2']
 
     def clean_password2(self):
         password1 = self.cleaned_data.get("password1")
