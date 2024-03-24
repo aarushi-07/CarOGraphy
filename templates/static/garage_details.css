@@ -1,0 +1,177 @@
+body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #efebeb;
+}
+
+.search-container input[type=text] {
+        flex: 1;
+        padding: 10px;
+        border-radius: 6px;
+        border: none;
+        outline: none;
+        font-size: 16px;
+    }
+
+.search-container button {
+        padding: 10px 20px;
+        border-radius: 6px;
+        background-color: #09a841;
+        color: #ffffff;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+.search-container img {
+        padding: 10px 20px;
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+.search-container button:hover {
+        background-color: #0056b3;
+    }
+
+    /* Car Garage Card Styles */
+.car-garage {
+        background-color: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 4px 6px rgba(0.5, 0.5, 0.5, 0.5);
+        margin: 10px auto;
+        margin-top: 70px ;
+        width: 900px;
+        height: 600px;
+        padding: 20px;
+        display: flex;
+        align-items: center; /* Align items vertically */
+        transition: transform 0.3s ease;
+        overflow: hidden; /* Ensure image fits within card */
+        cursor: pointer; /* Add pointer cursor to indicate clickable */
+    }
+
+.car-garage:hover {
+        transform: translateY(-5px);
+    }
+
+.car-garage h1 {
+        color: #333333;
+        font-size: 28px;
+        width: 200px;
+        white-space: nowrap;
+        margin-right: 20px;
+        margin-bottom: 30px;
+    }
+
+.car-garage p {
+        color: #666666;
+        font-size: 22px;
+        margin-bottom: 5px;
+    }
+
+.car-image {
+        width: 500px; /* Set image width */
+        height: 400px; /* Maintain aspect ratio */
+        border-radius: 8px;
+        margin-right: 20px; /* Add space between image and details */
+    }
+    /* Feedback and Chat Button Styles */
+.feedback-button,
+.chat-button {
+        width: 150px;
+        height: 40px;
+        margin-top: 10px;
+        padding: 10px 20px;
+        border-radius: 6px;
+        background-color: #09a841;
+        color: #ffffff;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+.feedback-button:hover,
+.chat-button:hover {
+        background-color: #0056b3;
+    }
+
+.menu-bar {
+    background-color: #3D71AB;
+    color: #fff;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu-bar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu-bar li {
+    display: inline;
+    margin-left: 20px;
+}
+
+.menu-bar a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.menu-bar a:hover {
+    text-decoration: underline;
+}
+
+.logo {
+    width: 50px;
+}
+.app-name {
+        color: #fff;
+        font-size: 20px;
+        margin-left: -910px;
+    }
+.footer-sections {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.footer-section {
+    margin: 0 10px;
+}
+
+.footer-section h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.footer-section ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 5px;
+}
+
+.footer-section a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.footer-section a:hover {
+    text-decoration: underline;
+}
+.footer {
+    background-color: #3D71AB;
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

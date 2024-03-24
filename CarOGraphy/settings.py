@@ -132,6 +132,18 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# added by Arish
+# SMTP Config
+# for the reset password features
+
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = 'django_smtp_ssl.SSLEmailBackend'
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 465
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'internetapplicationsclass@gmail.com'
+EMAIL_HOST_PASSWORD = 'mnvkczrujdqhpetq'
 
 CHANNEL_LAYERS = {
     'default':{

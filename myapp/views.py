@@ -1,12 +1,12 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
-
-
 from myapp.forms import  CreateUserForm, ProfileForm, LoginForm
-
 from myapp.models import Profile
-
+from django.contrib.auth.models import User
+from django.core.mail import send_mail
+from django.contrib import messages
+from myapp.forms import ProfileForm
 
 def authenticate_user(email=None, password=None):
     try:
@@ -21,7 +21,6 @@ def authenticate_user(email=None, password=None):
             return None  # Return None if the password is incorrect
     except Profile.DoesNotExist:
         return None  # Return None if the user does not exist
-
 
 def login_view(request):
 
@@ -98,3 +97,31 @@ def user_guide(request):
 @login_required
 def landing(request):
     return render(request, 'myapp/landing.html')
+
+def chat(request):
+    return render(request, 'myapp/chat.html')
+
+
+def contact_us(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        subject = request.POST.get('subject')
+        message = request.POST.get('message')
+        
+        
+        send_mail(
+            f"Message from {name} - {subject}",
+            message,
+            'internetapplicationsclass@gmail.com',
+            [email],  # Replace with your email
+            fail_silently=False,
+        )
+
+        # Show a success message
+        messages.success(request, 'Your message has been sent!')
+        
+        # Redirect to the same page after POST
+        return redirect('contact-us')
+
+    return render(request, 'myapp/contact_us.html')
