@@ -28,8 +28,7 @@ def authenticate_user(email=None, password=None):
         else:
             return None
     except Profile.DoesNotExist:
-        return None
-
+        return None  # Return None if the user does not exist
 
 def login_view(request):
     invalid_credentials = False
@@ -39,18 +38,16 @@ def login_view(request):
             email = form.cleaned_data.get('email')
             password = form.cleaned_data.get('password')
             user = authenticate_user(email, password)
-            print(user)
             if user is not None:
-                # If authentication succeeds, log in the user and redirect
                 login(request, user)
-                return redirect('landing')  # Redirect to the appropriate URL
+                return redirect('myapp:landing')  # Redirect to the appropriate URL
             else:
                 invalid_credentials = True
                 print(invalid_credentials)
                 return render(request, 'myapp/login.html', {'form': form, 'invalid_credentials': invalid_credentials})
     else:
         form = LoginForm()
-    return render(request, 'myapp/login.html', {'form': form, invalid_credentials:'invalid_credentials'})
+    return render(request, 'myapp/login.html', {'form': form, 'invalid_credentials' : invalid_credentials})
 
 @login_required
 def logout_view(request):
@@ -64,7 +61,7 @@ def register_view(request):
             form.save()
             user = form.cleaned_data.get('username')
             print(user)
-            return redirect('login')
+            return redirect('myapp:login')
     else:
         form = CreateUserForm()
 
@@ -129,10 +126,10 @@ def contact_us(request):
         )
 
         # Show a success message
-        messages.success(request, 'Your message has been sent!')
+        # messages.success(request, 'Your message has been sent!')
         
         # Redirect to the same page after POST
-        return redirect('contact-us')
+        return redirect('myapp:contact-us')
 
     return render(request, 'myapp/contact_us.html')
 
@@ -269,3 +266,19 @@ def user_form_view(request):
     else:
         form = UserForm()
     return render(request, 'myapp/user_form.html', {'form': form})
+
+# def garage_user_history(request):
+#     clicked_garages_ids = request.session.get('clicked_garages', [])
+#     clicked_garages = Cargaragedata.objects.filter(id__in=clicked_garages_ids)
+
+#     return render(request, 'clicked_garages.html', {'clicked_garages': clicked_garages})
+
+def garage_user_history(request):
+    # Simulate a list of clicked garages with hard-coded data
+    clicked_garages = [
+        {'name': 'Garage A', 'rating': 4.5, 'address': '123 Main St', 'contact_number': '555-1234', 'website': 'http://example.com'},
+        {'name': 'Garage B', 'rating': 4.2, 'address': '456 Elm St', 'contact_number': '555-5678', 'website': 'http://example.org'},
+        # Add more simulated garages as needed
+    ]
+
+    return render(request, 'myapp/garage_user_history.html', {'clicked_garages': clicked_garages})
