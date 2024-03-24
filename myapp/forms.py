@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 
 from . import models
-from .models import Profile,Feedback
+from .models import Profile,Feedback, ServiceForm
 
 
 class ProfileForm(forms.ModelForm):
@@ -46,4 +46,9 @@ class FeedbackForm(forms.ModelForm):
     class Meta:
         model = Feedback
         fields = ['message']
+
+class UserForm(forms.ModelForm):
+    class Meta:
+        model = ServiceForm
+        fields = ['firstname', 'lastname', 'phone_number', 'email', 'address', 'garage']
 

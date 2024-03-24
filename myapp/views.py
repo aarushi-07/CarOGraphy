@@ -3,11 +3,11 @@ from django.db.models import Q
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login
 from myapp.forms import  CreateUserForm, ProfileForm, LoginForm
-from myapp.models import Profile, ChatWindow, ChatMessage
+from myapp.models import Profile, ChatWindow, ChatMessage, CarService, ServiceForm
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
 from django.contrib import messages
-from myapp.forms import ProfileForm,FeedbackForm
+from myapp.forms import ProfileForm,FeedbackForm, UserForm
 
 def authenticate_user(email=None, password=None):
     try:
@@ -192,3 +192,24 @@ def messages(request):
     }
 
     return render(request, 'myapp/message.html', context)
+
+def home_view(request):
+    services = CarService.objects.all()[0:3]
+    return render(request, 'myapp/home.html', {'services': services})
+
+def services(request):
+    return render(request, 'myapp/services.html')
+
+def services_view(request):
+    services = CarService.objects.all()
+    return render(request, 'myapp/services.html', {'services': services})
+
+def user_form_view(request):
+    if request.method == 'POST':
+        form = UserForm(request.POST)
+        if form.is_valid():
+            form.save()  # Saves form data to the database
+            return redirect('https://buy.stripe.com/test_dR66qgamv0pe5565kk')  # Redirect to a success page or another view
+    else:
+        form = UserForm()
+    return render(request, 'myapp/user_form.html', {'form': form})

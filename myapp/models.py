@@ -117,3 +117,26 @@ class Feedback(models.Model):
     def __str__(self):
         return f"Feedback from {self.user}"
 
+class CarService(models.Model):
+    title = models.CharField(max_length=100)
+    description = models.TextField()
+    image = models.ImageField(upload_to='car_service_images/', null=True, blank=True)
+
+    def __str__(self):
+        return self.title
+
+class ServiceForm(models.Model):
+    firstname = models.CharField(max_length=100)
+    lastname = models.CharField(max_length=100)
+    phone_number = models.CharField(max_length=15)
+    email = models.EmailField()
+    address = models.TextField()
+    GARAGE_CHOICES = [
+        ('garage1', 'Garage 1'),
+        ('garage2', 'Garage 2')
+    ]
+    garage = models.CharField(max_length=20, choices=GARAGE_CHOICES)
+
+    def __str__(self):
+        return self.firstname + ' ' + self.lastname
+

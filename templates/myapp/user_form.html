@@ -1,0 +1,108 @@
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <title>User Form</title>#}
+{#    <!-- Include your CSS file for styling -->#}
+{#    {% load static %}#}
+{#    <link rel="stylesheet" href="{% static 'static/user_form.css' %}">#}
+{#</head>#}
+{#<body>#}
+{#    <div class="container">#}
+{#        <h2>User Form</h2>#}
+{#        <form method="post" action="{% url 'myapp:user_form' %}">#}
+{#            {% csrf_token %}#}
+{#            <div class="row">#}
+{#                <div class="column">#}
+{#                    <label for="fname">First Name:</label>#}
+{#                    {{ form.firstname }}#}
+{#                </div>#}
+{#                <div class="column">#}
+{#                    <label for="lname">Last Name:</label>#}
+{#                    {{ form.lastname }}#}
+{#                </div>#}
+{#            </div>#}
+{#            <div class="row">#}
+{#                <div class="column">#}
+{#                    <label for="phone">Phone Number:</label>#}
+{#                    {{ form.phone_number }}#}
+{#                </div>#}
+{#                <div class="column">#}
+{#                    <label for="email">Email:</label>#}
+{#                    {{ form.email }}#}
+{#                </div>#}
+{#            </div>#}
+{#            <div class="row">#}
+{#                <label for="address">Address:</label>#}
+{#                {{ form.address }}#}
+{#            </div>#}
+{#            <div class="row">#}
+{#                <label for="garage">Garage:</label>#}
+{#                <select id="garage" name="garage">#}
+{#                    {% for choice in form.garage.field.choices %}#}
+{#                        <option value="{{ choice.0 }}">{{ choice.1 }}</option>#}
+{#                    {% endfor %}#}
+{#                </select>#}
+{#            </div>#}
+{#            <input type="submit" value="Book Now">#}
+{#        </form>#}
+{#    </div>#}
+{#</body>#}
+{#</html>#}
+
+
+
+{% extends 'myapp/base.html' %}
+
+{% block title %}User Form{% endblock %}
+{% load static %}
+{% block additional_stylesheets %}
+       <link rel="stylesheet" href="{% static 'static/user_form.css' %}">
+{% endblock %}
+
+
+{% block content %}
+
+ <div class="container">
+        <h2>User Form</h2>
+        <form method="post" action="{% url 'myapp:user_form' %}">
+            {% csrf_token %}
+            <div class="row1">
+                <div class="column">
+                    <label for="fname">First Name:</label>
+                    {{ form.firstname }}
+                </div>
+                <div class="column">
+                    <label for="lname">Last Name:</label>
+                    {{ form.lastname }}
+                </div>
+            </div>
+            <div class="row1">
+                <div class="column">
+                    <label for="phone">Phone Number:</label>
+                    {{ form.phone_number }}
+                </div>
+                <div class="column">
+                    <label for="email">Email:</label>
+                    {{ form.email }}
+                </div>
+            </div>
+            <div class="row1">
+                <label for="address">Address:</label>
+                {{ form.address }}
+            </div>
+            <div class="row1">
+                <label for="garage">Garage:</label>
+                <select id="garage" name="garage">
+                    {% for choice in form.garage.field.choices %}
+                        <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <input type="submit" value="Book Now">
+        </form>
+    </div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
