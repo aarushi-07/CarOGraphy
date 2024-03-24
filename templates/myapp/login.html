@@ -1,6 +1,40 @@
+{#{% load static %}#}
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <meta name="viewport" content="width=device-width, initial-scale=1.0">#}
+{#    <title>CaroGraphy - Login</title>#}
+{#    <link rel="stylesheet" href="{% static 'static/login.css' %}">#}
+{#</head>#}
+{#<body>#}
+{#    <div class="container">#}
+{#        <div class="image-container">#}
+{#                <img src="{% static 'static/20945733.jpg' %}" alt="CaroGraphy logo" class="image">#}
+{#            </div>#}
+{#        <div class="form-container">#}
+{#            <h1 class="title">CarOGraphy</h1>#}
+{#            <p class="signup">Don't have an account?<a href="/register/"> Sign up</a></p>#}
+{#            <form class="form" method="post" action="">#}
+{#                {% csrf_token %}#}
+{#                {{ form.email.label }}#}
+{#                {{ form.email }}#}
+{#                {{ form.password.label }}#}
+{#                {{ form.password }}#}
+{#                <button type="submit" class="button">Login</button>#}
+{#                <a class="forgot-password" href="/forgot-password/">Forgot password?</a>#}
+{#            </form>#}
+{#        </div>#}
+{#    </div>#}
+{#</body>#}
+{#</html>#}
+
+
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <title>Login</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
