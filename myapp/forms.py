@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 
 from . import models
-from .models import Profile
+from .models import Profile, Feedback
 
 
 class ProfileForm(forms.ModelForm):
@@ -42,3 +42,8 @@ class LoginForm(forms.Form):
     email = forms.EmailField(label='Email')
     password = forms.CharField(label='Password', widget=forms.PasswordInput)
 
+
+class FeedbackForm(forms.ModelForm):
+    class Meta:
+        model = Feedback
+        fields = ['message']
