@@ -18,5 +18,5 @@ urlpatterns = [
     path('messages/', views.chat,name='chat'),
     path('contact-us/', views.contact_us, name='contact-us'),
     path('garage-history/', views.garage_user_history, name='garage_history'),
-
+    path('feedback/', views.feedback_view, name='feedback')
 ]
