@@ -269,3 +269,19 @@ def user_form_view(request):
     else:
         form = UserForm()
     return render(request, 'myapp/user_form.html', {'form': form})
+
+# def garage_user_history(request):
+#     clicked_garages_ids = request.session.get('clicked_garages', [])
+#     clicked_garages = Cargaragedata.objects.filter(id__in=clicked_garages_ids)
+
+#     return render(request, 'clicked_garages.html', {'clicked_garages': clicked_garages})
+
+def garage_user_history(request):
+    # Simulate a list of clicked garages with hard-coded data
+    clicked_garages = [
+        {'name': 'Garage A', 'rating': 4.5, 'address': '123 Main St', 'contact_number': '555-1234', 'website': 'http://example.com'},
+        {'name': 'Garage B', 'rating': 4.2, 'address': '456 Elm St', 'contact_number': '555-5678', 'website': 'http://example.org'},
+        # Add more simulated garages as needed
+    ]
+
+    return render(request, 'myapp/garage_user_history.html', {'clicked_garages': clicked_garages})
