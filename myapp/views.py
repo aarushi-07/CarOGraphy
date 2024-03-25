@@ -284,7 +284,18 @@ def user_form_view(request):
             return redirect('myapp:payment')  # Redirect to a success page or another view
     else:
         form = UserForm()
-    return render(request, 'myapp/user_form.html', {'form': form})
+    garages = Cargaragedata.objects.all()
+
+    # Example: Accessing garage details
+    garage_details = []
+    for garage in garages:
+        garage_details.append({
+            'name': garage.name,
+            'address': garage.address,
+            'rating': garage.rating,
+            # Add other fields as needed
+        })
+    return render(request, 'myapp/user_form.html', {'form': form, 'garages': garage_details})
 
 def payment_view(request):
     if request.method == 'POST':

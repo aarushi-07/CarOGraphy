@@ -94,8 +94,8 @@
             <div class="row1">
                 <label for="garage">Garage:</label>
                 <select id="garage" name="garage">
-                    {% for choice in form.garage.field.choices %}
-                        <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+                    {% for choice in garages %}
+                        <option value="{{ choice.0 }}">{{ choice.name }}</option>
                     {% endfor %}
                 </select>
             </div>
