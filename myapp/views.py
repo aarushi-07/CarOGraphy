@@ -314,3 +314,21 @@ def garage_user_history(request):
     ]
 
     return render(request, 'myapp/garage_user_history.html', {'clicked_garages': clicked_garages})
+
+def record_garage_click(request, garage_id):
+    garage = get_object_or_404(Cargaragedata, id=garage_id)
+    clicked_garages = request.session.get('clicked_garages', [])
+    
+    # Store only unique garage IDs or full garage objects based on your preference
+    if garage_id not in clicked_garages:
+        clicked_garages.append(garage_id)  # Or store more detailed information
+        request.session['clicked_garages'] = clicked_garages
+    
+    return redirect('myapp:garage_details', garage_id=garage_id)  # Adjust the redirect as needed
+
+
+def user_clicked_garages(request):
+    clicked_garage_ids = request.session.get('clicked_garages', [])
+    clicked_garages = Cargaragedata.objects.filter(id__in=clicked_garage_ids)  # Retrieve garages from DB
+    context = {'clicked_garages': clicked_garages}
+    return render(request, 'myapp/garage_click_history.html', context)

@@ -41,4 +41,6 @@ urlpatterns = [
     path('garages/', views.garages, name='garages'),
     path('reviews/', views.reviews, name='reviews'),
     path('details/<int:garage_id>/', views.garage_details, name='garage_details'),
+    path('record-click/<int:garage_id>/', views.record_garage_click, name='record_garage_click'),
+    path('clicked-garages/', views.user_clicked_garages, name='clicked_garages'),
 ]
