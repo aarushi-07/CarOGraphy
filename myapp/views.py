@@ -103,12 +103,15 @@ def user_guide(request):
 
 @login_required(login_url='login')
 def landing(request):
-    allgarages = Cargaragedata.objects.all()[0]
+    allgarages = Cargaragedata.objects.all()[0:1]
     services = CarService.objects.all()[0:3]
-    garage_rating = int(allgarages.rating)
+    if allgarages:
+        garage_rating = int(allgarages[0].rating)
+    else:
+        garage_rating=0
     # Convert rating to a list of stars
     stars = [1] * garage_rating  # Assuming 1 star per item
-    return render(request, 'myapp/landing.html', {'allgarages': allgarages,'services': services, 'stars': stars})
+    return render(request, 'myapp/landing.html', {'allgarages': allgarages,'services': services,'stars':stars })
 
 def garages(request):
     query = request.GET.get('q')  # Get the search query from the request
@@ -262,9 +265,11 @@ def messages(request):
 
 def home_view(request):
     services = CarService.objects.all()[0:3]
-    allgarages = Cargaragedata.objects.all()[0]
-    garage_rating = int(allgarages.rating)
-    # Convert rating to a list of stars
+    allgarages = Cargaragedata.objects.all()[0:1]
+    if allgarages:
+        garage_rating = int(allgarages[0].rating)
+    else:
+        garage_rating = 0
     stars = [1] * garage_rating  # Assuming 1 star per item
     return render(request, 'myapp/home.html', {'services': services, 'allgarages': allgarages,  'stars': stars})
 

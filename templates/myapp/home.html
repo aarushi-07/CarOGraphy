@@ -82,13 +82,14 @@
         <div class="titles">
             Garages
         </div>
+       {% for i in allgarages %}
        <div class="row garagescontent">
             <div class="col-sm-4">
                 <img
 {#                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSidYPqHQv4TMtSTsVVwmhUt0eKRYiPuTKeJQ&usqp=CAU"#}
 {#                    class="img-thumbnail" alt="Cinque Terre">#}
-                {% if allgarages.image %}
-                <img class="img-thumbnail" src="{{ allgarages.image.url }}"
+                {% if i.image %}
+                <img class="img-thumbnail" src="{{ i.image.url }}"
                      style="max-width: 100%; height: 200px; width: 275px"
                 >
                 {% endif %}
@@ -96,29 +97,34 @@
             <div class="col-sm-8">
                 <div class="row d-flex align-items-center justify-content-center">
                     <div class="col-sm-5">
-                        <h3 style="font-weight: bold;padding-bottom: 10px" >{{allgarages.name}}</h3>
-                        <p>{{allgarages.address}}</p>
-                        <p>Windsor, ON K6A 2J3</p>
-                        <p>{{allgarages.contact_number}}</p>
+                        <h3 style="font-weight: bold;padding-bottom: 10px" >{{i.name}}</h3>
+                        <p><a href="https://maps.app.goo.gl/QN4DrmyG8VP2vy1w6">
+                       {{i.address}} </a></p>
+                        <p>Windsor, ON</p>
+                        <p>{{i.contact_number}}</p>
                     </div>
-                    <div class="col-sm-2 align-self-center">location</div>
+{#                    <div class="col-sm-2 align-self-center"><a href="https://maps.app.goo.gl/QN4DrmyG8VP2vy1w6">location#}
+{#                    </a></div>#}
                     <div class="col-sm-5 text-center">
 {#                    <span class="fa fa-star checked" style="color: orange"></span>#}
 {#                    <span class="fa fa-star checked" style="color: orange"></span>#}
 {#                    <span class="fa fa-star checked" style="color: orange"></span>#}
 {#                    <span class="fa fa-star" style="color: orange"></span>#}
 {#                    <span class="fa fa-star" style="color: orange"></span>#}
+
                         {% for _ in stars %}
                <span class="fa fa-star checked" style="color: orange"></span>
             {% endfor %}
-                        <span> {{ allgarages.rating }}</span>
+
+                        <span> {{ i.rating }}</span>
                         <p>
-                        <a href={% url 'myapp:garage_details' garage_id=allgarages.id %}>see more details ❯</a>
+                        <a >see more details ❯</a>
                         </p>
                     </div>
                 </div>
             </div>
         </div>
+       {% endfor %}
         <div class="cntr">
             <a href="{% url 'myapp:garages' %}" class="btn btn-danger btng">See All Garages ❯</a>
         </div>
