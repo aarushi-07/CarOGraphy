@@ -328,6 +328,18 @@ def record_garage_click(request, garage_id):
 
 def user_clicked_garages(request):
     clicked_garage_ids = request.session.get('clicked_garages', [])
-    clicked_garages = Cargaragedata.objects.filter(id__in=clicked_garage_ids)  # Retrieve garages from DB
-    context = {'clicked_garages': clicked_garages}
+    if clicked_garage_ids:
+        # Fetch the garages once from the database
+        garages = list(Cargaragedata.objects.filter(id__in=clicked_garage_ids))
+        
+        # Create a dictionary of garage objects keyed by their ID
+        garage_dict = {garage.id: garage for garage in garages}
+        
+        # Reorder the garages based on the order of IDs in clicked_garage_ids
+        ordered_garages = [garage_dict[garage_id] for garage_id in clicked_garage_ids if garage_id in garage_dict]
+        
+        context = {'clicked_garages': ordered_garages}
+    else:
+        context = {'clicked_garages': []}
+    
     return render(request, 'myapp/garage_click_history.html', context)
