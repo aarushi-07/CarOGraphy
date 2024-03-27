@@ -1,0 +1,26 @@
+
+.navbar {
+    background-color: #3d71ab;
+    border-radius: 0px;
+    color: white;
+    font-size: 18px;
+}
+
+ ul li a {
+    color: white;
+}
+
+.navbar-btn {
+    float: right;
+    margin-right: 10px;
+}
+
+.avatar{
+            vertical-align: middle;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            float: right;
+            background-color: white;
+            margin: 4px 10px 0px 0px;
+}

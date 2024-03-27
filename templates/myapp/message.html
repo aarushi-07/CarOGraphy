@@ -1,0 +1,87 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.js">
+
+    </script>
+</head>
+<body>
+{% if user.is_authenticated %}
+    <input type="hidden" id="logged-in-user" value="{{ user.id }}">
+{% endif %}
+<div class="container-fluid h-100 " style="margin-right: 0 !important; margin-left: 0 !important;">
+    <div class="row justify-content-center h-100 ">
+        <div class="col-md-4 col-xl-3 chat h-100 mt-4" style="height: 600px !important;">
+            <div class="card mb-sm-3 mb-md-0 contacts_card" >
+                <div class="card-header">
+                    <!-- Create Group Button -->
+                </div>
+                <div class="card-header">
+                    <!-- Search Bar -->
+                </div>
+                <div class="card-body contacts_body" >
+                    <ui class="contacts" id="contacts">
+                        {% for userchat in userchats %}
+                            {% if not userchat.group %}
+                                <!-- Render contacts for one-to-one chats -->
+                                <li class="{% if forloop.first or userchat.id == last_active_userchat_id %}active{% endif %} contact-li" chat-id="chat_{{ userchat.id }}" data-userchat-id="{{ userchat.id }}" style="cursor: pointer">
+                                    <!-- Contact details -->
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ui>
+                </div>
+                <div class="card-footer"></div>
+            </div>
+        </div>
+        <div class="col-md-8 col-xl-6 chat h-100 mt-4" style="height: 600px !important;">
+            <div class="card">
+                {% for userchat in userchats %}
+                    {% if not userchat.group %}
+                        <!-- Render messages for one-to-one chat -->
+                        <div class="messages-wrapper  {% if forloop.first %}hide is_active{% else %}hide{% endif %}" chat-id="chat_{{ userchat.id }}" other-user-id="{{ userchat.first_person.user.id }}">
+                            <!-- Message card body -->
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                <div class="card-footer">
+                    <form id="send-message-form">
+                        <!-- Input message form -->
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script src="{% static 'myapp/message.js' %}"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            $('.contact-li').on('click', function() {
+                var userchat_id = $(this).data('userchat-id'); // Assuming you have a data attribute for the user ID
+                $.ajax({
+                    url: '/set_last_active_userchat_id/',
+                    type: 'POST',
+                    data: {
+                        'userchat_id': userchat_id,
+                        'csrfmiddlewaretoken': '{{ csrf_token }}'
+                    },
+                    success: function(response) {
+                        if (response.status === 'success') {
+                        }
+                    }
+                });
+            });
+        })
+    </script>
+</body>
+</html>

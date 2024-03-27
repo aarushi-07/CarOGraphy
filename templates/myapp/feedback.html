@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CaroGraphy - Feedback</title>
+    <link rel="stylesheet" href="{% static 'static/login.css' %}"> <!-- Assuming you want to use the same CSS file as other pages -->
+    <style>
+        /* Additional CSS styles */
+        .form-label {
+            margin-bottom: 5px; /* Adjust margin between label and text area */
+        }
+        .feedback-message {
+            margin-bottom: 10px; /* Adjust margin between feedback message and text area */
+        }
+        /* Adjust text area size */
+        textarea {
+            width: 100%; /* Set text area width to 100% of its container */
+            min-height: 200px; /* Set minimum height for the text area */
+            padding: 10px; /* Add padding to the text area */
+            box-sizing: border-box; /* Include padding and border in the element's total width and height */
+            resize: vertical; /* Allow vertical resizing of the text area */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="image-container">
+            <img src="{% static 'static/20945733.jpg' %}" alt="CaroGraphy logo" class="image">
+        </div>
+        <div class="form-container">
+            <h1 class="title">Feedback</h1>
+            <form class="form" method="post" action="">
+                {% csrf_token %}
+                <div class="mb-3 mt-3">
+                    <label for="message" class="form-label">Feedback Message</label>
+                    <textarea name="message" id="message" class="form-control" rows="5" placeholder="We appreciate your feedback. Please let us know your thoughts."></textarea>
+                </div>
+                <button type="submit" class="button">Submit Feedback</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

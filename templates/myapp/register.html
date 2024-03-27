@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - CarOgraphy</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css">
+    <style>
+        /* Body and container styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1140px;
+            margin: auto;
+        }
+
+        /* Image styles */
+        .img-fluid {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Main text styles */
+        .main-text {
+            color: #333;
+            font-weight: bold;
+        }
+
+        /* Input styles */
+        .main-input {
+            border-radius: 20px;
+            border: 1px solid #ccc;
+            padding: 20px;
+            font-size: 16px;
+        }
+
+        /* Primary button styles */
+        .btn-sz-primary {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .btn-sz-primary:hover {
+            background-color: #0056b3;
+        }
+
+        /* Back to login link styles */
+        .back-to-login {
+            color: #007bff;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        .back-to-login:hover {
+            color: #0056b3;
+        }
+
+        /* Form styles */
+.form-label {
+    margin-bottom: 0.5rem;
+}
+
+.form-outline {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-outline label {
+    margin-bottom: 0.5rem;
+}
+
+.form-outline input {
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    border: 1px solid #ced4da;
+}
+
+.form-outline button {
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+}
+
+    </style>
+</head>
+<body>
+
+<section class="vh-100">
+    <div class="container py-5 h-100">
+        <div class="row d-flex align-items-center justify-content-center h-100">
+            <div class="col-12 text-center mb-5">
+                <h1>Welcome to CarOgraphy</h1>
+            </div>
+            <div class="col-md-8 col-lg-7 col-xl-6">
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
+                    class="img-fluid" alt="Phone image">
+            </div>
+            <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+                <form action="" method="POST" class="form">
+                    {% csrf_token %}
+                    <!-- Email input -->
+                    <div class="form-label pb-2">
+                        <label>Already have Account ?<a href="/login/">Sign In</a></label>
+                    </div>
+                    <div>
+                    <div class="form-outline mb-4">
+                    <label class="mb-2 mt-2 form-label ">
+                        {{ form.username.label }}
+                        </label>
+                        {{ form.username }}
+
+                    </div>
+                    <div class="form-outline mb-4">
+                    <label class="mb-2 mt-2 form-label ">
+                        {{ form.email.label }}
+                        </label>
+                        {{ form.email }}
+
+                    </div>
+                    <div class="form-outline mb-4">
+                    <label class="mb-2 mt-2 form-label ">
+                        {{ form.password1.label }}
+                        </label>
+                        {{ form.password1 }}
+
+                    </div>
+                    <div class="form-outline mb-4">
+                    <label class="mb-2 mt-2 form-label ">
+                        {{ form.password2.label }}
+                    </label>
+                        {{ form.password2 }}
+                    </div>
+                </div>
+                    <!-- Submit button -->
+                    <button type="submit" class="btn btn-primary btn-lg btn-block">Register</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Function to validate password and confirm password fields
+    function validatePassword() {
+        var password = document.getElementById("id_password1").value;  // Update ID to id_password1
+        var confirmPassword = document.getElementById("id_password2").value;  // Update ID to id_password2
+        if (password !== confirmPassword) {
+            alert("Passwords do not match!");
+            return false;
+        }
+        else {
+            alert("User Created Successfully")
+        }
+        return true;
+    }
+
+    // Add event listener to form submission
+    document.querySelector(".form").addEventListener("submit", function(event) {
+        if (!validatePassword()) {
+            event.preventDefault(); // Prevent form submission if passwords do not match
+        }
+    });
+</script>
+
+</body>
+</html>
